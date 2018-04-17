@@ -127,9 +127,10 @@ scheme: Pisces
 # Key is the link label showing to end users.
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
-#social:
-  #GitHub: https://github.com/yourname || github
-  #E-Mail: mailto:yourname@gmail.com || envelope
+social:
+  GitHub: https://github.com/RiversMaJianCheng || github
+  邮箱: mailto:jianchengmadev@gmail.com || envelope
+  微博: http://weibo.com/riversma || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -141,6 +142,7 @@ scheme: Pisces
 
 social_icons:
   enable: true
+  微博: weibo
   icons_only: false
   transition: false
 
