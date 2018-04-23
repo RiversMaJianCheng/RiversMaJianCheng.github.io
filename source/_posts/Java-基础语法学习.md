@@ -28,7 +28,7 @@ tags:
 ```
 package 包路径;
 public class 类名 {
-    public statid void main(String[] args) {
+    public static void main(String[] args) {
         程序代码
     }
 }
@@ -369,7 +369,7 @@ class Persom {
         }
 }
 ```
-## 抽象类于接口
+## 抽象类与接口
 ### 抽象类：
 Java中，可以通过abstract关键字将成员方法声明为抽象方法，这样的方法不用具体实现，无需声明方法体，包含抽象方法的类叫做抽象类，在定义抽象类的时候也需要使用关键字abstract对类进行修饰。
 
