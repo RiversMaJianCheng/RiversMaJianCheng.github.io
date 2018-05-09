@@ -96,5 +96,58 @@ void UncaughtExceptionHandler(NSException *exception)
 简单看一个数组越界的崩溃信息：
 ![](https://ws3.sinaimg.cn/large/006tKfTcly1fqy3gvgu3ej31c6124kas.jpg)
 
+## Crash日志收集服务
+一般情况下，第三方功能性SDK都会集成一个Crash收集服务，用来及时发现自己SDK的问题，但是当集成了多家服务时往往会出现冲突：NSSetUncaughtExceptionHandler（）这个函数是将函数地址当做参数传递，所以只要重复调用就会被覆盖，这样就不能保证崩溃收集的稳定性。
+正确的做法是：无论是Signal捕获还是NSException捕获都会存在handler覆盖的问题，我们应该先判断是否前者已经注册了handler，如果有则应该把这个handler保存下来，在自己处理完自己的handler之后，再把这个handler抛出去，供前面的注册者处理。
 
+> 使用友盟、bugly等第三方崩溃统计工具，原理都是根据系统产生的crash日志进行了一次提取或者封装，然后将封装后的crash文件上传到对应的服务端进行解析处理。优点是快速集成crash收集功能，有完善的后台管理界面和解析处理。
+
+## 符号化iOS Crash文件
+一般收集到的崩溃日志如下：
+首先要了解符号表，符号表是内存地址与函数名、文件名以及行号的映射表。表示如下：
+**<起始地址> <结束地址> <函数> [<文件名：行号>]**
+为了能够快速并准备定位用户发生crash的代码位置，必须对app发生的crash的程序堆栈进行解析和还原。
+等我们符号化之后显示如下：
+![](https://ws1.sinaimg.cn/large/006tNc79ly1fr550q09plj311207gdhd.jpg)
+这样我们就很容易定位到出错的位置。
+### 异常信息
+异常信息有三种类型
+1. 已标记错误位置的，这种信息很明确了不用解析，如下：
+```
+    0x0000000109708aeb -[ViewController buttonClick:] + 43
+```
+2. 有模块地址的情况，如下：
+```
+test 0x00000001018157dc 0x100064000 + 24844252
+```
+以上面为例子，从左到右依次是： 二进制库名（test），调用方法的地址（0x00000001018157dc），模块地址（0x100064000）+偏移地址（24844252）
+
+3. 无模块地址的情况
+```
+    test 0x00000001018157dc test + 24844252
+```
+
+### 解析
+解析有多种，说一种吧
+1. 获取dSYM符号表
+xcode->window->organizer->右键你的应用 show finder->右键.xcarchive 显示包内容->dSYMs->test.app.dYSM
+2.atos命令来符号化某个特定模块加载地址
+```
+atos [-arch 架构名] [-o 符号表] [-l 模块地址] [方法地址]
+```
+3. 使用终端，进到test.app.dSYM所在目录
+* 有模块地址的情况运行
+```
+atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc
+```
+
+* 无模块地址的情况
+现将偏移地址转为16进制
+> 24844252 = 0x17B17DC
+> 然后方法的地址-偏移地址，得到的就是模块地址
+> 0x00000001018157dc - 0x17B17DC = 0x100064000
+> 最后运行 
+```
+atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc
+```
 
