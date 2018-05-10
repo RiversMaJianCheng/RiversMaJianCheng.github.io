@@ -128,7 +128,7 @@ test 0x00000001018157dc 0x100064000 + 24844252
 ```
 
 ### 解析
-解析有多种，说一种吧
+解析有多种，说一种吧（因为没有打包文件，无法获取的SYM文件，以下均为参考）
 1. 获取dSYM符号表
 xcode->window->organizer->右键你的应用 show finder->右键.xcarchive 显示包内容->dSYMs->test.app.dYSM
 2.atos命令来符号化某个特定模块加载地址
@@ -150,4 +150,9 @@ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0
 ```
 atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc
 ```
+## 测试小Demo
+自己写了一个测试小demo， [戳我查看](https://github.com/RiversMaJianCheng/JCCrashTest.git)；
 
+本文参考：
+[向晨宇的技术博客](http://www.iosxxx.com/blog/2015-08-29-iosyi-chang-bu-huo.html)
+[iOS崩溃crash大解析](https://www.jianshu.com/p/1b804426d212)
