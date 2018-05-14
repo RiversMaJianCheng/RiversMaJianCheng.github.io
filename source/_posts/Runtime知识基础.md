@@ -208,6 +208,9 @@ void xiaomageMethod(id obj, SEL _cmd){
 相关的描述格式：[戳我查看](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100-SW1);
 这里首先会发送methodSignatureForSelector消息获取一个函数的签名（包含返回值，参数，以及target），如果这个返回值为nil，那程序就调用doesNotRecognizeSelector挂掉了。返回一个方法签名后，就会创建一个NSInvocation对象并发送给forwardInvocation消息给目标对象。然后我们在forwardInvocation方法里让其他对象执行相应的方法。这里可以将消息发送给任意多对象。
 
+## demo
+[戳我查看](https://github.com/RiversMaJianCheng/runtimeDemo.git)
+
 ## 参考
 [iOS runtime forwardInvocation一些总结](https://blog.csdn.net/zhaochen_009/article/details/54602930)
 [iOS Runtime详解](https://juejin.im/post/5ac0a6116fb9a028de44d717)
