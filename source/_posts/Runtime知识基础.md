@@ -126,13 +126,91 @@ objc_msgSend函数的调用过程：
 * 完整消息转发
 ![](https://ws4.sinaimg.cn/large/006tKfTcly1fqr7jamac9j30sv0fm0tq.jpg)
 
-1. 动态方法解析：object-c运行时会调用+resolveInstanceMothod: 或者 +resolveClassMethod: 让你有机会提供一个函数的实现，如果添加了函数（你需要用class_addMethod函数完成向特定类添加特定方法实现）并返回YES，那么消息就得到处理。
-2. 备用接受者：如果上个方法返回NO，运行时就会进行下一步：forwardingTargetForSelector:，如果目标对象实现了-forwardingTargetForSelector:，runtime这时就会调用这个方法，让你有把这个消息转发给其他对象的机会。
-3. 完整消息转发：当备用接受者不做消息处理返回为NO时，完整消息转发机制就会被触发，这时forwardInvocation:方法会被执行。流程是：首先发送-methodSignatureForSelector:消息获得函数的参数和返回值类型。如果-methodSignatureForSelector:返回nil，runtime则会发出-doesNotRecognizeSelector:消息，也就是程序崩溃了。如果返回了一个函数签名，runtime就会创建一个NSInvocation对象并发送-forwardInvocation: 消息给目标对象。
+1. 动态方法解析：object-c运行时会调用+resolveInstanceMothod: 或者 +resolveClassMethod: 让你有机会提供一个函数的实现，如果添加了函数（你需要用class_addMethod函数完成向特定类添加特定方法实现），那么消息就得到处理。
+2. 备用接受者：如果上个方法我们没有实现消息处理，运行时就会进行下一步：forwardingTargetForSelector:，如果目标对象实现了-forwardingTargetForSelector:，runtime这时就会调用这个方法，让你有把这个消息转发给其他对象的机会。
+3. 完整消息转发：当备用接受者不做消息处理返回为nil时，完整消息转发机制就会被触发，这时forwardInvocation:方法会被执行。流程是：首先发送-methodSignatureForSelector:消息获得函数的参数和返回值类型。如果-methodSignatureForSelector:返回nil，runtime则会发出-doesNotRecognizeSelector:消息，也就是程序崩溃了。如果返回了一个函数签名，runtime就会创建一个NSInvocation对象并发送-forwardInvocation: 消息给目标对象。
 
-以上就是有关Runtime相关的基础知识。
+### 动态方法解析
+```
+void xiaomageMethod(id obj, SEL _cmd){
+    NSLog(@"我消息转发了第一个过程");
+}
++ (BOOL)resolveInstanceMethod:(SEL)sel{
 
+    //模拟第一个流程
+    //如果是执行foo函数，就动态解析，指定新的IMP
+    if (sel == @selector(xiaomage)) {
+        class_addMethod([self class], sel, (IMP)xiaomageMethod, "v@");
+        return YES;
+    }
+    return [super resolveInstanceMethod:sel];
 
+}
+```
+这里需要注意的是只要实现了xiaomageMethod方法，无论返回YES或者NO，都不会进行下一步的消息转发。（我猜测是我们调用了xiaomageMethod的IMP，就认为消息转发成功，也就没有必要进行下去）。
 
+###  备用接受者
+```
+- (id)forwardingTargetForSelector:(SEL)aSelector{
+
+    //模拟第二步消息转发流程
+    SecondStepForward *secondStep = [[SecondStepForward alloc] init];
+    if ([secondStep respondsToSelector:aSelector]) {
+        return secondStep;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+```
+这个方法，我们要把处理对象转移给其他类，如果这里返回self的话，因为self没有实现xiaomage的方法，所以跟返回nil没有区别的。（可能是编译器做了优化处理，我看很多文章都是这里返回位self会死循环，实际测试不会的）。这里消息只能被转发给一个对象。
+
+### 完整消息转发
+```
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
+
+    NSMethodSignature *signature =  [super methodSignatureForSelector:aSelector];
+    if (!signature) {
+        if ([ThirdStepForward instancesRespondToSelector:aSelector]) {
+        signature = [ThirdStepForward instanceMethodSignatureForSelector:aSelector];
+        }
+    }
+    return signature;
+    //下面这种方式也可以
+    /*
+    if (aSelector == @selector(xiaomage)) {
+        return [NSMethodSignature signatureWithObjCTypes:"v@:"];////签名，进入forwardInvocation
+    }
+    */
+
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation{
+    NSLog(@"anInvocation = %@",anInvocation.target);
+    SEL sel = anInvocation.selector;
+
+    if ([ThirdStepForward instancesRespondToSelector:sel]) {
+        [anInvocation invokeWithTarget:[[ThirdStepForward alloc] init]];
+    }else{
+        [self doesNotRecognizeSelector:sel];
+    }
+
+    //下面方法也可以
+    /*
+    ThirdStepForward *thirdStep = [[ThirdStepForward alloc] init];
+    if ([thirdStep respondsToSelector:sel]) {
+        [anInvocation invokeWithTarget:thirdStep];
+    }else{
+        [self doesNotRecognizeSelector:sel];
+    }
+    */
+}
+
+```
+相关的描述格式：[戳我查看](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100-SW1);
+这里首先会发送methodSignatureForSelector消息获取一个函数的签名（包含返回值，参数，以及target），如果这个返回值为nil，那程序就调用doesNotRecognizeSelector挂掉了。返回一个方法签名后，就会创建一个NSInvocation对象并发送给forwardInvocation消息给目标对象。然后我们在forwardInvocation方法里让其他对象执行相应的方法。这里可以将消息发送给任意多对象。
+
+## 参考
+[iOS runtime forwardInvocation一些总结](https://blog.csdn.net/zhaochen_009/article/details/54602930)
+[iOS Runtime详解](https://juejin.im/post/5ac0a6116fb9a028de44d717)
+[Objective-C Runtime](http://yulingtianxia.com/blog/2014/11/05/objective-c-runtime/)
 
 
