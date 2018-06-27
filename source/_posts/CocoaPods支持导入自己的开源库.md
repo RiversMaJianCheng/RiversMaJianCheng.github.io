@@ -111,6 +111,35 @@ pod search JCDrawSpiderChart
 3. 验证
 4. 推送
 
+## gitlab制定私有仓库（前期组件化做准备）
+以上创建的三方库，GitHub是可以直接search到的。但是对于大公司来说：项目庞大，功能巨多，app也有好几个，然而这些项目中好多都是共有的，比如说一些工具类，网络库，存储库等，以及项目过于庞大，公司会把各个模块进行拆分，拆分成低耦合的各个组件，既方便测试又方便开发。这就是目前一些大公司常采取的组件化。本文不讨论组件化，只说组件化前期的准备工作。就是建私有仓库，存放一些工具类，方便小组使用。
+> 组件化实现基本基于cocoapods，首先要明白两个概念：私有库，索引库。即我们要建两个仓库：
+私有库：我们存放代码组件的地方（就是放代码的地方）；
+索引库：存放spec文件的地方，用于索引到代码的位置。
+
+**注意：下文讨论是私有仓库已经存在并且可以正常连接的情况下！！！**
+
+1. cocoapods 本地仓库路径
+```
+$ ~/.cocoapods/repos
+```
+2. 在本地添加一个自己的远程索引库 名字为XXXX
+```
+$ pod repo add XXXX http://lalalalala/majiancheng/XXXX.git
+```
+![](https://ws2.sinaimg.cn/large/006tNc79ly1fspvor722tj31aq0o8jv0.jpg)
+
+这样就将我们自己创建的索引库放到.cocoapods 管理的仓库下。默认情况下是只有一个master仓库，我们常用的AFNetworking等本地的索引就在这个仓库中，现在我们通过gitLab来创建自己的仓库，所以要创建一个自己的索引仓库，该仓库下至存放各组件的索引文件，不存放任何代码！！！
+
+3. 然后同步远程和本地索引库。
+```
+$ pod repo push XXXX  zujianku.podspec
+```
+然后测试：pod search XXXX
+![](https://ws2.sinaimg.cn/large/006tNc79ly1fspvquk180j30vo0j8tb7.jpg)
+
+以上算是基本完成了本地组件化的前期建仓过程，下面的写代码就行了！！！
+
 ## 参考
 [CocoaPods支持导入自己的开源库](https://arthurcao.com/2017/04/25/cocoapods-and-podspec/)
 [把代码开源到cocoapods](http://www.rockyd.cn/2016/12/25/2016-12-25codeopensource/)
