@@ -148,7 +148,8 @@ $ pod repo push XXXX  zujianku.podspec
 
 使用：
 如下图，Podfile文件需要加入私有仓库索引。
-![](https://ws1.sinaimg.cn/large/006tKfTcly1fsqptd4hyrj31bq0hojub.jpg)
+**注：pod公有仓库必须添加，不然pod公有库都无法使用 source 'https://github.com/CocoaPods/Specs.git' #共有库地址**
+![](https://ws3.sinaimg.cn/large/006tKfTcly1fsqw9cjfzfj31c80mq784.jpg)
 
 ## 参考
 [CocoaPods支持导入自己的开源库](https://arthurcao.com/2017/04/25/cocoapods-and-podspec/)
