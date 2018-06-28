@@ -85,7 +85,7 @@ pod spec lint JCDrawSpiderChart.podspec
 ```
 pod spec lint --allow-warnings
 ```
-## 推送podsec文件到cocoapods
+## 推送podsec文件到公有的cocoapods（私有仓库不要执行此步骤！！！）
 推送的过程中会再次验证一遍，所以有时候有会出现验证不通过的情况
 ```
 pod trunk push JCDrawSpiderChart.podspec
