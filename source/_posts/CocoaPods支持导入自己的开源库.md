@@ -140,6 +140,18 @@ $ pod repo push XXXX  zujianku.podspec
 
 以上算是基本完成了本地组件化的前期建仓过程，下面的写代码就行了！！！
 
+更新：
+1. 把修改的版本号podspec文件中，以及其他修改的文件提交。
+2. 需要重新打标签
+3. 连接 pod spec lint 
+4. 同步远程和本地索引库 pod repo push XXXX索引库名称  私有仓库名称.podspec --allow-warnings
+
+使用：
+如下图，Podfile文件需要加入私有仓库索引。
+![](https://ws1.sinaimg.cn/large/006tKfTcly1fsqptd4hyrj31bq0hojub.jpg)
+
 ## 参考
 [CocoaPods支持导入自己的开源库](https://arthurcao.com/2017/04/25/cocoapods-and-podspec/)
 [把代码开源到cocoapods](http://www.rockyd.cn/2016/12/25/2016-12-25codeopensource/)
+[iOS组件化探究之私有库的创建](http://www.cocoachina.com/ios/20180511/23359.html)
+[如何在gitLib 下创建私有 CocoaPods 仓库](https://blog.csdn.net/x32sky/article/details/76152966)
