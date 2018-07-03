@@ -55,6 +55,8 @@ public:
 objc_object 结构体包含一个isa指针，类型为isa_t联合体。根据isa就可以找到对象所属的类。
 PS：isa指针不总是指向实例对象所属的类，不能依靠它来确定类型，而是应该用class方法来确定实例对象的类。因为KVO的实现机理就是将被观察对象的isa指针指向一个生成的中间类而不是我们真实创建的类。
 
+isa其实会在三个对象中存在：实例对象会有isa指针，类对象也有isa指针，元类对象也有isa指针。实例对象的isa指针指向的是类，类对象的isa指针指向的是元类，元类的isa指针指向的是根元类。根元类的isa指针指向他自己（一般为NSObject的元类）。
+
 2. Class是一个指向objc_class结构体的指针。就是我们常说的类。
 ```
 typedef struct objc_class *Class;
