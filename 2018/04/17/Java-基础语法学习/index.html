@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="BSjKGg_yOCPV8pQBlLUFwCLrsxilKinAnZ-5SGInQUU">
+<head><meta name="generator" content="Hexo 3.9.0">
+<meta name="baidu-site-verification" content="y0Sa01ZfbS">
+</head>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="首先Java是一门面向对象的编程语言，吸收了C++语言的各种优点，并且摒弃了C++里难以理解的多继承、指针等概念。1996年1月，Sun公司发布了Java的第一个开发工具包（JDK 1.0），这是Java发展历程中的重要里程碑，标志着Java成为一种独立的开发语言。  下面说一下JDK、JRE、JVM的含义：JDK(Java Development Kit)：Java 开发工具包。JRE (Jav">
+<meta name="keywords" content="学习 生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 基础语法学习及程序设计">
+<meta property="og:url" content="http://majiancheng.top/2018/04/17/Java-基础语法学习/index.html">
+<meta property="og:site_name" content="马建承的博客">
+<meta property="og:description" content="首先Java是一门面向对象的编程语言，吸收了C++语言的各种优点，并且摒弃了C++里难以理解的多继承、指针等概念。1996年1月，Sun公司发布了Java的第一个开发工具包（JDK 1.0），这是Java发展历程中的重要里程碑，标志着Java成为一种独立的开发语言。  下面说一下JDK、JRE、JVM的含义：JDK(Java Development Kit)：Java 开发工具包。JRE (Jav">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fqjhhpg3klj30vm0r23zk.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fqji2oa8urj30va0pumyq.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fqjyjvx2wlj30u60m03z3.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fqjzdk4vd9j31780l0dhp.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fqjzc1v5lkj316y0myq4x.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fqjzl1w3m3j318c0kwac7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcly1fqkc74z3k8j317y0kg76d.jpg">
+<meta property="og:updated_time" content="2019-12-13T07:49:43.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 基础语法学习及程序设计">
+<meta name="twitter:description" content="首先Java是一门面向对象的编程语言，吸收了C++语言的各种优点，并且摒弃了C++里难以理解的多继承、指针等概念。1996年1月，Sun公司发布了Java的第一个开发工具包（JDK 1.0），这是Java发展历程中的重要里程碑，标志着Java成为一种独立的开发语言。  下面说一下JDK、JRE、JVM的含义：JDK(Java Development Kit)：Java 开发工具包。JRE (Jav">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fqjhhpg3klj30vm0r23zk.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://majiancheng.top/2018/04/17/Java-基础语法学习/">
+
+
+
+
+
+  <title>Java 基础语法学习及程序设计 | 马建承的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马建承的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://majiancheng.top/2018/04/17/Java-基础语法学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RiversMa">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马建承的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 基础语法学习及程序设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T20:43:08+08:00">
+                2018-04-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-13T15:49:43+08:00">
+                2019-12-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,773
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先Java是一门面向对象的编程语言，吸收了C++语言的各种优点，并且摒弃了C++里难以理解的多继承、指针等概念。1996年1月，Sun公司发布了Java的第一个开发工具包（JDK 1.0），这是Java发展历程中的重要里程碑，标志着Java成为一种独立的开发语言。</p>
+<blockquote>
+<p>下面说一下JDK、JRE、JVM的含义：<br>JDK(Java Development Kit)：Java 开发工具包。<br>JRE (Java Runtime Environment)：Java运行环境。<br>JVM(Java Virtual Machine)：Java虚拟机。<br>其中JDK中包含JRE，JRE中包含JVM。如果仅仅执行Java程序，那么仅安装JRE即可，如果要开发Java程序，则需要安装JDK，在运行Java程序是需要启动JVM，由JVM加载、解释、运行.class字节码文件。<br><strong>本文的讲解都是在集成开发工具是Eclipse</strong></p>
+</blockquote>
+<p>本文主要介绍Java基础语法及程序设计进行讲解，将分为以下几个章节：</p>
+<ul>
+<li>语法基础</li>
+<li>流程控制语句</li>
+<li>数组和方法</li>
+<li>类和对象</li>
+<li>面向对象的三大特征</li>
+<li>抽象类与接口</li>
+<li>对象的管理</li>
+</ul>
+<h2 id="语法基础"><a href="#语法基础" class="headerlink" title="语法基础"></a>语法基础</h2><ol>
+<li><p>Java语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">package 包路径;</span><br><span class="line">public class 类名 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        程序代码</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>main方法是执行程序的入口，当开始运行当前程序时，Java虚拟机会按顺序由上至下执行main方法内部的程序代码。<br>定义标识符不能与关键字冲突，业界定义标识符时遵守一定规范大致如下：</p>
+</li>
+</ol>
+<ul>
+<li>包名一律使用小写字母</li>
+<li>类名中每个单词首字母都要大写</li>
+<li>变量名与方法名使用“驼峰命名法”</li>
+<li>常用名所有字母大写，如有多个单词则使用“_”连接，如USER_ID<br>注释分为三种：</li>
+</ul>
+<p>单行注释<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//我是一个单行注释</span><br></pre></td></tr></table></figure></p>
+<p>多行注释<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*我是一个多行注释*/</span><br></pre></td></tr></table></figure></p>
+<p>文档注释<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> *这是啥意思</span><br><span class="line"> *这又是啥意思</span><br><span class="line"> *我是文档注释</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p>变量的声明：需要注意的是局部变量声明后必须进行初始化。不然编译器会报错。<br>Java的基本数据类型有八种：byte、short、int、long、float、double、char、boolean。<br><strong>注：</strong>需要注意的是不同类型变量赋值时的数值溢出问题，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Example &#123;</span><br><span class="line"></span><br><span class="line">    public static void mian(String[] args) &#123;</span><br><span class="line">    </span><br><span class="line">        long index = 300; //300(int类型)隐式转换成long</span><br><span class="line">        int anther = index; //把index变量赋值给anther，编译器报错</span><br><span class="line">        int anther = (int)index; //强制转换为int不会报错，可能会出现值的问题</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><p>流程控制语句主要分为3种：顺序结构、分支结构和循环结构。</p>
+<ol>
+<li>顺序结构就是我们常编写的代码，从上到下执行的结构，这个比较简单就不详细介绍了。</li>
+<li>分支结构分为两大类：if语句和switch语句。<br>1)  if语句：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(判断条件)&#123;</span><br><span class="line">    代码块（判断条件成立后执行）</span><br><span class="line">&#125;</span><br><span class="line">如下：</span><br><span class="line">int age = 16;</span><br><span class="line">if(age &gt;= 16)&#123;</span><br><span class="line">    System.out.println(&quot;小明成年了&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2) if else 语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if(判断条件)&#123;</span><br><span class="line">    A 代码块（判断条件为true执行）</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    B 代码块（判断条件为false执行）</span><br><span class="line">&#125;</span><br><span class="line">如下：</span><br><span class="line">int age = 16;</span><br><span class="line">if(age &gt;= 16)&#123;</span><br><span class="line">    System.out.println(&quot;小明成年了&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    System.out.println(&quot;小明未成年了&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注：Java中有一种特殊的运算叫三元运算，执行的流程和if…else语句类似语法如下：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量类型 v = 判断条件 ？ 表达式1 ： 表达式2</span><br><span class="line">注：表达式1和表达式2的结果的数据类型需要保持一致。</span><br></pre></td></tr></table></figure></p>
+<p>判断的流程是：</p>
+<blockquote>
+<p>执行判断条件，判断条件是true还是false。<br>如果条件为true则运算表达式1，然后把表达式1的结果值作为三元运算的结果赋值给变量v。<br>如果条件为false则运算表达式2，然后把表达式2的结果值作为三元运算的结果赋值给变量v。</p>
+</blockquote>
+<p>3) if…else if…else 语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(判断条件A)&#123;</span><br><span class="line">    A 代码块 （判断条件A值为true，执行）</span><br><span class="line">&#125;else if(判断条件B)&#123;</span><br><span class="line">    B 代码块 （判断条件B值为true，执行）</span><br><span class="line">&#125;else if(判断条件C)&#123;</span><br><span class="line">    C 代码块 （判断条件C值为true，执行）</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    D 代码块 （判断条件A、B和C值为false，执行）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4) switch语句：<br>Java中提供了switch语句来来简化过于啰嗦的分支语法，语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">switch (分支表达式) &#123;</span><br><span class="line">    case 目标值 A:</span><br><span class="line">        执行语句A;</span><br><span class="line">        break;</span><br><span class="line">    case 目标值 B:</span><br><span class="line">        执行语句B;</span><br><span class="line">        break;</span><br><span class="line">    case 目标值 C:</span><br><span class="line">        执行语句C;</span><br><span class="line">        break;</span><br><span class="line">    case 目标值 D:</span><br><span class="line">        执行语句D;</span><br><span class="line">        break;</span><br><span class="line">    ......</span><br><span class="line">    ......</span><br><span class="line">    default:</span><br><span class="line">        默认执行语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>循环结构语句有三类：<ul>
+<li>while循环<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while (循环条件)&#123;</span><br><span class="line">    循环体执行语句;</span><br><span class="line">    循环体执行语句;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p>这里需要注意的是，在循环体中要给出正确的跳出循环的条件，否则这个程序就进入了死循环！！！</p>
+<ul>
+<li><p>do…while循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    循环体执行语句</span><br><span class="line">&#125;while(循环条件);</span><br><span class="line"></span><br><span class="line">//这种循环首先会执行一次循环体，然后判断条件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for 循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for (初始表达式; 循环条件; 操作表达式)&#123;</span><br><span class="line">    循环体执行语句</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(int i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    System.out.println(&quot;Hello World&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上就是流程控制语句的基本介绍；</p>
+<h2 id="数组和方法"><a href="#数组和方法" class="headerlink" title="数组和方法"></a>数组和方法</h2><ol>
+<li>数组时Java中极为常用的数据类型，声明数组变量时需要明确定义数组中存储的数据类型，如果数组中存储int类型数据就要声明为：int[]。Java要求声明数组时必须指定元素的数据类型，并且数组中的元素必须与该类型一致，否则会导致语法错误。如下初始化：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int[] ary;</span><br><span class="line">ary = new int[5];</span><br><span class="line">double[] ary2 = new double[5];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>还可以如下初始化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int[] ary1 = &#123;100, 200, 300, 400&#125;;</span><br><span class="line">int[] ary2 = new int[] &#123;100, 200, 300, 400&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注：</strong></p>
+<blockquote>
+<p> 整型数组元素的默认值为0<br>    浮点型数组元素的默认值为0.0<br>     boolean类型数组元素的默认值为false<br>     char类型元素的默认值看不到，也是有的是Unicode编码为0的字符<br>     String类型数组默认值为null<br>Java数据类型分为两大类：基本数据类型和引用数据类型。</p>
+</blockquote>
+<ol start="2">
+<li><p>方法是程序的核心，Java中定义一个方法的具体格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">修饰词 返回值类型 方法名 （参数类型 参数名， 参数类型 参数名）&#123;</span><br><span class="line">    方法体执行语句</span><br><span class="line">&#125;</span><br><span class="line">如以下：</span><br><span class="line">public static void arraySort (int[] ary)&#123;</span><br><span class="line">    ... ...</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修饰词：有访问权限修饰词public，静态修饰词static，最终修饰词final等。</p>
+</li>
+<li>返回值类型：用于限定方法返回值的数据类型。</li>
+<li>参数类型/参数名：用于接受方法调用者传递的参数数据。</li>
+<li>方法体：调用方法将会执行的代码段。</li>
+<li>return：return关键字用于接受方法的执行并返回方法执行的最终结果。</li>
+<li>返回值：方法执行的最终结果。</li>
+</ol>
+<h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><p> 对象是用程序虚拟出来的物体，包含物体的属性和行为，它本质上是内存中存储的一份数据。类是对象的“设计图纸”，是设计对象的具体手段，它本质上是对象的数据类型。所以想要使用对象，就必须先定义类。</p>
+<blockquote>
+<p>类中直接声明的变量叫做成员变量，方法内部声明的变量叫做局部变量。对于未初始化的成员变量，在创建对象时JVM会自动为它们初始化，并根据类型赋予它们不同的初始值。</p>
+</blockquote>
+<p>JVM 在运行时会向操作系统申请一块内存空间，它在管理这块内存空间时会将其划分成若干个不同的数据区域。</p>
+<h3 id="栈："><a href="#栈：" class="headerlink" title="栈："></a>栈：</h3><p>以方法为单元来存储数据。在调用任何方法时，JVM都会为此方法创建一个名为栈帧的空间，用于存储该方法内部的数据，再将此栈压入栈内，该过程叫做入栈。方法调用结束时，JVM会将此栈帧从栈内弹出，此过程叫做出栈。</p>
+<blockquote>
+<p>调用方法1时，JVM会为方法1创建一个栈帧，用于存储方法1内部的数据，并将此栈帧压入栈内，同样方法2也是。此时由于栈帧1已经位于栈底，所以栈2停留在栈1的上方。可以用下图表示：<br><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fqjhhpg3klj30vm0r23zk.jpg" alt="入栈过程"></p>
+</blockquote>
+<h3 id="堆："><a href="#堆：" class="headerlink" title="堆："></a>堆：</h3><p>专门用来存放数组和对象数据。由于数组和数组之间、对象和对象之间都是彼此独立的数据，它们之间没有顺序，被零散地存放在堆这个内存区域内，无论是数组还是对象，它们占据的那部分空间都有一个明确的地址，便于外界访问它们。如下图：<br><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fqji2oa8urj30va0pumyq.jpg" alt="堆结构"></p>
+<p>下面我们就以赛车手为例，详细阐述对象的创建过程，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static void main (String[] args) &#123;</span><br><span class="line">    Car car1 = new Car();</span><br><span class="line">    car1.brand = &quot;奔驰&quot;;</span><br><span class="line">    car1.color = &quot;红色&quot;;</span><br><span class="line">    car1.maxSpeed = 350;</span><br><span class="line">    car1.number = &quot;京A00001&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在main 方法之内的第一行，我们创建了对象，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car car1 = new Car();</span><br></pre></td></tr></table></figure></p>
+<p>运行代码时会分为3个步骤：</p>
+<ul>
+<li><p>首先执行的是等号左侧的部分，即声明变量的代码 Car car1 。执行程序到此时，由于运行的是main方法，所以JVM会为main方法创建一个栈帧，然后入栈。又因为声明了变量car1 ，所以JVM会在main方法的栈帧里开辟一块空间，用于存放car1变量的值。这个过程如下图所示：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fqjyjvx2wlj30u60m03z3.jpg" alt></p>
+</li>
+<li><p>接下来是执行等号右边的部分，即创建对象的代码块“new Car()” ，这时候JVM在堆中为新对象开辟一块空间，假设该空间的地址为0x1001。然后JVM在此空间内开辟了4个字空间，用于存储对象的4个属性值，由于此时还未对属性赋值，所以JVM先将它们设置为初始值，分别存于4个字空间中，整个过程如下图：<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fqjzdk4vd9j31780l0dhp.jpg" alt></p>
+</li>
+<li><p>然后是执行赋值操作，即“=”。此时JVM将对象的地址存入car1变量所引用的空间内。这个过程如下图所示：（注红色）<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fqjzc1v5lkj316y0myq4x.jpg" alt></p>
+</li>
+</ul>
+<p>至此，栈和堆中的数据产生了联系，栈中没有直接保存对象数据，仅仅是储存了对象的地址，用地址来引用对象，所以说对象是引用类型的数据。<br>执行完这行创建对象的代码后，又为对象的属性进行了赋值，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car1.brand = &quot;奔驰&quot;;</span><br><span class="line">car1.color = &quot;红色&quot;;</span><br><span class="line">car1.maxSpeed = 350;</span><br><span class="line">car1.number = &quot;京A00001&quot;</span><br></pre></td></tr></table></figure></p>
+<p>此时JVM就将这些值存入各个属性在堆中所占的空间内，如下图所示：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fqjzl1w3m3j318c0kwac7.jpg" alt></p>
+<p>以上就是对象创建过程中，JVM内存中的数据变化过程。每个方法在执行时都对应一个独立的栈帧，栈帧内部存储的是该方法的参数和局部变量。<strong>注：</strong>通过类创建对象的过程也叫实例化，对象也叫类的实例。</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
+<li>构造方法又称构造器，是一种特殊的方法，是专门用来初始化对象，在对象创建是为对象的属性初始化数据的。构造方法的规则如下：<blockquote>
+<ol>
+<li>方法名必须与类名相同。</li>
+<li>方法不能有返回值。</li>
+<li>方法名前不能声明返回值类型，void也不行。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>下面用代码说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package demo;</span><br><span class="line">class Car &#123;</span><br><span class="line">    //品牌</span><br><span class="line">    String brand;</span><br><span class="line">    //颜色</span><br><span class="line">    String color;</span><br><span class="line">    //最高时速</span><br><span class="line">    int maxSpeed;</span><br><span class="line">    //车牌号</span><br><span class="line">    String number;</span><br><span class="line">    </span><br><span class="line">    //构造方法</span><br><span class="line">    public Car(String b, String c, int s, String n)&#123;</span><br><span class="line">        brand = b;</span><br><span class="line">        color = c;</span><br><span class="line">        maxSpeed = s;</span><br><span class="line">        number = n;</span><br><span class="line">        &#125;</span><br><span class="line">    void run()&#123;</span><br><span class="line">        System.out.println(&quot;车牌号：&quot; + number);</span><br><span class="line">        System.out.println(brand + color);</span><br><span class="line">        System.out.println(&quot;最高时速：&quot; + maxSpeed);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着我们可以用上面的构造方法来创建Car对象。如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package demo;</span><br><span class="line">public class RacingGame&#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    Car car = new Car(&quot;奔驰&quot;,&quot;红色&quot;,350,&quot;京A00001&quot;);</span><br><span class="line">    car.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>注：</strong>每个类都有构造方法，只有通过构造方法才能实例化对象，但是构造方法却不是必须要声明的，对于未声明的构造方法，在编译时JDK会给它增加一个无参数的构造方法，通常称这个无参数的构造方法为默认的构造方法，如果我们显式地声明了构造方法，那么在编译的时候JDK就不会自动增加默认构造方法了。</p>
+<h3 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h3><p>（名称相同参数不同<strong>Object-C不支持</strong>）</p>
+<ol>
+<li>构造方法的重载：为一个类声明多个名称相同，参数不同的构造方法，叫做构造方法的重载。这样设计的目的是方便调用者，调用者可以根据自己掌握的信息，选择合适的构造方法来创建对象。</li>
+<li><p>this关键字用来指代当前对象，有三种用法：</p>
+<blockquote>
+<p>调用当前对象的成员变量<br>调用当前对象的成员方法<br>调用当前类的构造方法 <strong>注：</strong>只能在构造方法的第一行，通过this关键字调用其他的构造方法</p>
+</blockquote>
+<ul>
+<li>同理也有方法的重载，这个比较简单就不详细说明了。</li>
+</ul>
+</li>
+</ol>
+<h2 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h2><p>面向对象的三大特征：封装、继承和多态。这三大特征是践行面向对象编程思想的指导性意见，是设计程序时要遵循的基本原则。</p>
+<h3 id="封装："><a href="#封装：" class="headerlink" title="封装："></a>封装：</h3><p>所谓的封装，就是将该显示的显示，该隐藏的隐藏，Java中控制显示与隐藏需要使用访问修饰符，常用的private和public，一般声明成员变量时使用private，然后对private的成员变量增加set和get封装方法。在set方法中进行封装去除不合理的值。</p>
+<h3 id="继承："><a href="#继承：" class="headerlink" title="继承："></a>继承：</h3><p>继承这个好理解，基本上所有的面向对象的程序设计都有继承的概念。下面说下Java继承的特点。</p>
+<ul>
+<li>某个类只能有一个直接的父类，这种规则叫做单继承。Java中不允许出现多继承。</li>
+<li>允许出现多层继承的情况。</li>
+<li>多个类可以继承同一个父类。</li>
+<li>子类不能继承父类私有的内容，不能调用服了私有的成员变量、成员方法和构造方法。</li>
+</ul>
+<p>通过继承，子类可以重写父类的方法。子类可以重写父类的成员方法，但是不能重写父类的构造方法。同this关键字一样。super关键字可以调用父类的成员变量、成员方法和构造方法。<br><strong>注：，创建子类对象时，JVM会先调用父类的构造方法（并没有创建父类对象，因为new的是子类不是父类）。这是隐式调用的。通过super关键字显示调用父类的构造方法，这行代码必须写在子类构造方法的第一行</strong></p>
+<h3 id="多态："><a href="#多态：" class="headerlink" title="多态："></a>多态：</h3><p>表现是一个父类表现出了多种不同的状态，这就是多态。其实就是父类的引用指向子类对象。<br>    在Java中，在运用多态的思想设计程序时，由于使用父类指代子类对象，这时父类和子对象类型是可以相互转换的。这时向上类型转换，Java中是默认支持的，但是一旦将对象的子类型转换成父类型，就只能对他调用父类型的属性和方法，此时如果继续调用子类型的属性和方法，就会提示编译器错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package demo;</span><br><span class="line">class Persom &#123;</span><br><span class="line">    void drive(Vehicle v) &#123;</span><br><span class="line">    v.run();</span><br><span class="line">    v.unload();//这里是子类的方法会报错</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时需要将Vehicle类对象强制转换成子类Truck类型，前提是传入的对象是Truck对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package demo;</span><br><span class="line">class Persom &#123;</span><br><span class="line">    void drive(Vehicle v) &#123;</span><br><span class="line">        Truck t = (Truck)v;</span><br><span class="line">        t.run();</span><br><span class="line">        t.unload();//这里是子类的方法会报错</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="抽象类与接口"><a href="#抽象类与接口" class="headerlink" title="抽象类与接口"></a>抽象类与接口</h2><h3 id="抽象类："><a href="#抽象类：" class="headerlink" title="抽象类："></a>抽象类：</h3><p>Java中，可以通过abstract关键字将成员方法声明为抽象方法，这样的方法不用具体实现，无需声明方法体，包含抽象方法的类叫做抽象类，在定义抽象类的时候也需要使用关键字abstract对类进行修饰。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package demo;</span><br><span class="line">abstract class Vehicle &#123;</span><br><span class="line">    //行驶</span><br><span class="line">    void run()&#123;</span><br><span class="line">        start();</span><br><span class="line">        speedUp();</span><br><span class="line">        stop();</span><br><span class="line">    &#125;</span><br><span class="line">    //启动</span><br><span class="line">    abstract void start();</span><br><span class="line">    //加速</span><br><span class="line">    void speedUp()&#123;</span><br><span class="line">        System.out.println(&quot;加大油门&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    //停止</span><br><span class="line">    void stop()&#123;</span><br><span class="line">        System.out.println(&quot;刹车停止&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>抽象方法的具体实现是在子类中完成的，子类必须实现父类声明的抽象方法，除非子类也是抽象类不需实现。<br>定义抽象类的规则：</p>
+<blockquote>
+<p>抽象类和抽象方法必须使用关键字abstract来修饰，抽象方法不能有方法体。<br>抽象类中可以没有抽象方法，但是一个包含抽象方法的类必须被声明为抽象类。<br>子类若是抽象类，则可以不实现父类的抽象方法，子类不是抽象类，必须要实现父类的抽象方法。<br>抽象类不能被直接实例化，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">abstract class A &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        A a = new A();//会报错的</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>抽象类有构造方法，但是不能直接调用其构造方法来实例化抽象类，必须在子类中调用，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">abstract class A &#123;</span><br><span class="line">    public A () &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A&#123;</span><br><span class="line">    public B()&#123;</span><br><span class="line">        super();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>接口可以看作是特殊的抽象类，它内部声明的方法都是抽象方法，所以接口抽象的更为彻底。接口需要采用interface<br>关键字进行定义，并且需要有专门的类来实现接口中的抽象方法，这样的类叫做实现类，它们采用implements关键字来实现接口，如以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//定义名称为A的接口</span><br><span class="line">interface A &#123;</span><br><span class="line">    abstract void amethod();</span><br><span class="line">&#125;</span><br><span class="line">//定义名称为B的接口，让它实现接口A</span><br><span class="line">class B implements A &#123;</span><br><span class="line">    void amethod()&#123;</span><br><span class="line">        ...//代码</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一个类只能继承一个父类，但是却可以实现多个接口，这时接口最大的优点。<br>定义接口的规则如下：</p>
+<ol>
+<li><p>接口中可以定义属性，但是定义属性时必须初始化该属性，并且接口中的这个属性值不允许修改，因此也叫常量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface A &#123;</span><br><span class="line">    int i = 9;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口定义的方法全部是抽象方法，所以在方法前的abstract关键字可以省略，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface A &#123;</span><br><span class="line">    void aMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口可以继承接口，但是不能继承类，并且一个接口可以继承多个接口，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">interface A &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface B &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface C extends A, B&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口的实现类若不是抽象类，就必须实现接口中的所有方法，参考如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">interface A &#123;</span><br><span class="line">    void mehtod1();</span><br><span class="line">    void mehtod2();</span><br><span class="line">    void mehtod3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B implements A &#123;</span><br><span class="line">    public void method1() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public void method2() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public void method3() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口的实现类若是抽象类，则可以选择性地实现接口中的任意多个方法，参考如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">interface A &#123;</span><br><span class="line">    void h1();</span><br><span class="line">    void h2();</span><br><span class="line">    void h3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class B implements A &#123;</span><br><span class="line">    public void h3() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="对象的管理"><a href="#对象的管理" class="headerlink" title="对象的管理"></a>对象的管理</h2><p>包：<br>在进行一个正式的商业项目开发时，业务往往比较复杂，需要设计大量的类，为了便于查找和管理这些类，通常会按照功能的不同将这些类存放在不同的包中。包就是用来管理类的“文件夹”。<br>访问修饰符：<br>在Java中，我们可以对类、成员变量和成员方法的访问进行十分精细的管理。对于这三者的访问一共有4个级别分别是：private、default、protected和public。默认是defaul。<br><strong>注：public可以修饰类，private和protected不能修饰类。</strong></p>
+<p>对4个访问级别的详细介绍如下：</p>
+<ol>
+<li>private级别：<blockquote>
+<p>被修饰符private修饰的成员变量，成员方法为private级别，该级别的成员变量，成员方法只能被当前类的其他成员所访问。</p>
+</blockquote>
+</li>
+<li>default级别：<blockquote>
+<p>未经访问修饰符修饰的类、成员变量和成员方法为default级别，这个级别的内容可以被当前包下的其他类所访问，无法被当前包之外的类所访问。</p>
+</blockquote>
+</li>
+<li>protected级别：<blockquote>
+<p>被protected修饰的成员变量，成员方法为protected级别，该级别的成员变量和成员方法可以被当前包下其他的类所访问，也可以被任意包下改类的子类访问。</p>
+</blockquote>
+</li>
+<li>public级别：<blockquote>
+<p>被修饰符public修饰的类、成员变量和成员方法为public级别。该级别的类、成员变量和成员方法可以被任何包下的任何类所访问。<br>下图是针对上述4个访问级别的访问范围总结。Y代表YES，可以被访问。<br><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fqkc74z3k8j317y0kg76d.jpg" alt></p>
+</blockquote>
+</li>
+</ol>
+<p><strong>注：默认规则：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1) 一个Java文件中可以定义多个类，但只能有一个类被public修饰符修饰，并且这个类必须与文件同名。</span><br><span class="line">(2) 在接口中声明常量的抽象方法必须是public 级别的，没有使用任何访问修饰符时默认为public。</span><br></pre></td></tr></table></figure></p>
+<p>垃圾回收：<br>JVM会定时扫面堆内存，找出并删除该删除的数据，从而回收内存空间，这个过程就是垃圾回收。<br>Java采用的是自动的垃圾回收机制。在程序中我们也可以通过调用“System.gc()”来通知JVM立即进行垃圾回收，但是具体回收的时间，还是由JVM来决定，所以我们无法准确地控制垃圾回收时机。<br>一般不建议程序员调用“System.gc()”，因为JVM是按照一定的规律，对内存若干区域进行完整的扫描。手动调用会打破JVM的扫描规律，这会极大地消耗JVM的运行能力，大大地降低程序运行的效率。所以只需让JVM自动进行垃圾回收即可。</p>
+<h2 id="参考及特别感谢"><a href="#参考及特别感谢" class="headerlink" title="参考及特别感谢"></a>参考及特别感谢</h2><ol>
+<li><a href="http://fenbi.com/web/" target="_blank" rel="noopener">粉笔网IT教程</a></li>
+<li><a href="https://m.weibo.cn/p/1005052070218561" target="_blank" rel="noopener">粉笔IT-李洪鹤老师</a></li>
+<li><a href="https://blog.csdn.net/gj782128729" target="_blank" rel="noopener">粉笔IT-高境老师</a></li>
+<li><a href="https://m.weibo.cn/p/1005052920441243" target="_blank" rel="noopener">粉笔IT-徐铭老师</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+        
+            <div>
+
+<div style="text-align:center;color: #aaa;font-size:18px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+
+</div>
+
+        
+    </div>
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/我的第一篇博客/" rel="next" title="Mac下Hexo+GitHub-Pages搭建个人博客">
+                <i class="fa fa-chevron-left"></i> Mac下Hexo+GitHub-Pages搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/23/Java-GUI基础/" rel="prev" title="Java图形界面开发">
+                Java图形界面开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTc0MS8xMjI3Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="RiversMa">
+            
+              <p class="site-author-name" itemprop="name">RiversMa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/RiversMaJianCheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jianchengmadev@gmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/riversma" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法基础"><span class="nav-number">1.</span> <span class="nav-text">语法基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制语句"><span class="nav-number">2.</span> <span class="nav-text">流程控制语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组和方法"><span class="nav-number">3.</span> <span class="nav-text">数组和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">4.</span> <span class="nav-text">类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈："><span class="nav-number">4.1.</span> <span class="nav-text">栈：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆："><span class="nav-number">4.2.</span> <span class="nav-text">堆：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">4.3.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重载"><span class="nav-number">4.4.</span> <span class="nav-text">重载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象的三大特征"><span class="nav-number">5.</span> <span class="nav-text">面向对象的三大特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装："><span class="nav-number">5.1.</span> <span class="nav-text">封装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承："><span class="nav-number">5.2.</span> <span class="nav-text">继承：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多态："><span class="nav-number">5.3.</span> <span class="nav-text">多态：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类与接口"><span class="nav-number">6.</span> <span class="nav-text">抽象类与接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类："><span class="nav-number">6.1.</span> <span class="nav-text">抽象类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">6.2.</span> <span class="nav-text">接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的管理"><span class="nav-number">7.</span> <span class="nav-text">对象的管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考及特别感谢"><span class="nav-number">8.</span> <span class="nav-text">参考及特别感谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RiversMa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

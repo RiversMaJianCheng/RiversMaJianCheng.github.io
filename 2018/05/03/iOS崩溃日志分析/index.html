@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="BSjKGg_yOCPV8pQBlLUFwCLrsxilKinAnZ-5SGInQUU">
+<head><meta name="generator" content="Hexo 3.9.0">
+<meta name="baidu-site-verification" content="y0Sa01ZfbS">
+</head>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="崩溃捕获在iOS程序的崩溃中，主要有两种异常引起的。一个是Mach异常，一个是Object-C异常（NSException，OC层的异常）。 Mach Exception Mach是一个XNU的微内核核心，Mach异常是指最底层的内核级异常，被定义在&amp;lt;mach/exception_types.h&amp;gt;下。每个thread，task，host都有一个异常端口数组，Mach的部分API暴露给了">
+<meta name="keywords" content="学习 生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS异常捕获">
+<meta property="og:url" content="http://majiancheng.top/2018/05/03/iOS崩溃日志分析/index.html">
+<meta property="og:site_name" content="马建承的博客">
+<meta property="og:description" content="崩溃捕获在iOS程序的崩溃中，主要有两种异常引起的。一个是Mach异常，一个是Object-C异常（NSException，OC层的异常）。 Mach Exception Mach是一个XNU的微内核核心，Mach异常是指最底层的内核级异常，被定义在&amp;lt;mach/exception_types.h&amp;gt;下。每个thread，task，host都有一个异常端口数组，Mach的部分API暴露给了">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fqy3gvgu3ej31c6124kas.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr550q09plj311207gdhd.jpg">
+<meta property="og:updated_time" content="2019-12-13T07:49:43.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS异常捕获">
+<meta name="twitter:description" content="崩溃捕获在iOS程序的崩溃中，主要有两种异常引起的。一个是Mach异常，一个是Object-C异常（NSException，OC层的异常）。 Mach Exception Mach是一个XNU的微内核核心，Mach异常是指最底层的内核级异常，被定义在&amp;lt;mach/exception_types.h&amp;gt;下。每个thread，task，host都有一个异常端口数组，Mach的部分API暴露给了">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fqy3gvgu3ej31c6124kas.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://majiancheng.top/2018/05/03/iOS崩溃日志分析/">
+
+
+
+
+
+  <title>iOS异常捕获 | 马建承的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马建承的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://majiancheng.top/2018/05/03/iOS崩溃日志分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RiversMa">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马建承的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS异常捕获</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T10:41:35+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-13T15:49:43+08:00">
+                2019-12-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,854
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="崩溃捕获"><a href="#崩溃捕获" class="headerlink" title="崩溃捕获"></a>崩溃捕获</h2><p>在iOS程序的崩溃中，主要有两种异常引起的。一个是Mach异常，一个是Object-C异常（NSException，OC层的异常）。</p>
+<h3 id="Mach-Exception"><a href="#Mach-Exception" class="headerlink" title="Mach Exception"></a>Mach Exception</h3><ul>
+<li>Mach是一个XNU的微内核核心，Mach异常是指最底层的内核级异常，被定义在&lt;mach/exception_types.h&gt;下。每个thread，task，host都有一个异常端口数组，Mach的部分API暴露给了用户态，用户态的开发者可以直接通过Mach API设置thread，task，host的异常端口来捕获Mach异常，抓取Crash事件。</li>
+</ul>
+<p>总结几个常见的Mach异常（Exception Type ， Exception Code）：</p>
+<ol>
+<li>Exception Type</li>
+</ol>
+<ul>
+<li><p>EXC_BAD_ACCESS    (Bad Memory Access)<br>此类型的exception是我们最长碰到的Crash，通常用于访问了不该访问的内存导致。一般EXC_BAD_ACCESS后面的“（）”还会带有补充信息。</p>
+<blockquote>
+<p>SIGSEGV:通常由于重复释放对象导致，这种类型在ARC以后比较少见了<br>SIGABRT:收到Abort信号推出，通常Foundation库中的容器为了保护状态正常会做一些检测，例如插入nil到数组中会出现此错误。<br>SEGV:代码无效内存地址，比如空指针，未初始化指针，栈溢出等<br>SIGBUS:总线错误，访问对象为初始化。与SIGSEGV不同的是，SIGSEGV访问的是无效地址，而此访问的是有效地址，但是总线访问异常（如地址对齐问题）<br>SIGILL:尝试执行非法的指令，可能不被识别或者没有权限</p>
+</blockquote>
+</li>
+<li><p>EXC_BAD_INSTRUCTION<br>此类异常通常由于线程执行非法指令导致</p>
+</li>
+<li>EXC_ARITHMETIC<br>除零错误会抛出此类异常</li>
+</ul>
+<ol start="2">
+<li>Exception Code<blockquote>
+<p>0x8badf00d 读作“ate bad food”，程序启动或者恢复时间过长被watch dog终止。<br>0xdead10cc 读作“dead lock” 表示应用因为在后台运行时占用系统资源，如通讯录数据库不释放而被终止。<br>0xbad22222 该编码表示 VoIP 应用因为过于频繁重启而被终止。<br>0xdeadfa11 读做 “dead fall”! 该代码表示应用是被用户强制退出的。根据苹果文档, 强制退出发生在用户长按开关按钮直到出现 “滑动来关机”, 然后长按 Home按钮。强制退出将产生 包含0xdeadfa11 异常编码的崩溃日志, 因为大多数是强制退出是因为应用阻塞了界面。<br>0xbaaaaaad  ⽤用户按住Home键和⾳音量键,获取当前内存状态,不代表崩溃<br>0xc00010ff 读作“cool off” 因为太烫了被干掉</p>
+</blockquote>
+</li>
+</ol>
+<p>所有的Mach异常是FreeBSD上特有定义的高层异常，会在host层被ux_exception转换为相应的Unix信号，并通过threadsignal将信号投递到出错的线程。我们可以通过注册signalHandler来捕获信号：<br>signal信号的类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SIGABRT–程序中止命令中止信号</span><br><span class="line">SIGALRM–程序超时信号</span><br><span class="line">SIGFPE–程序浮点异常信号</span><br><span class="line">SIGILL–程序非法指令信号</span><br><span class="line">SIGHUP–程序终端中止信号</span><br><span class="line">SIGINT–程序键盘中断信号</span><br><span class="line">SIGKILL–程序结束接收中止信号</span><br><span class="line">SIGTERM–程序kill中止信号</span><br><span class="line">SIGSTOP–程序键盘中止信号</span><br><span class="line">SIGSEGV–程序无效内存中止信号</span><br><span class="line">SIGBUS–程序内存字节未对齐中止信号</span><br><span class="line">SIGPIPE–程序Socket发送失败中止信号</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void SignalExceptionHandler(int signal) &#123;</span><br><span class="line">    NSMutableString *mstr = [[NSMutableString alloc] init];</span><br><span class="line">    [mstr appendString:@&quot;Stack:\n&quot;];</span><br><span class="line">    void* callstack[128];</span><br><span class="line">    int i, frames = backtrace(callstack, 128);</span><br><span class="line">    char** strs = backtrace_symbols(callstack, frames);</span><br><span class="line">    for (i = 0; i &lt;frames; ++i) &#123;</span><br><span class="line">        [mstr appendFormat:@&quot;%s\n&quot;, strs[i]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void InstallSignalHandler(void) &#123;</span><br><span class="line">    signal(SIGHUP, SignalExceptionHandler);</span><br><span class="line">    signal(SIGINT, SignalExceptionHandler);</span><br><span class="line">    signal(SIGQUIT, SignalExceptionHandler);</span><br><span class="line">    signal(SIGABRT, SignalExceptionHandler);</span><br><span class="line">    signal(SIGILL, SignalExceptionHandler);</span><br><span class="line">    signal(SIGSEGV, SignalExceptionHandler);</span><br><span class="line">    signal(SIGFPE, SignalExceptionHandler);</span><br><span class="line">    signal(SIGBUS, SignalExceptionHandler);</span><br><span class="line">    signal(SIGPIPE, SignalExceptionHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="应用级异常NSException"><a href="#应用级异常NSException" class="headerlink" title="应用级异常NSException"></a>应用级异常NSException</h3><p>某个NSException导致程序Crash，只要我们拿到这个NSException，获取它的reason，name，callStackSymbols信息才能确定出问题的程序位置。方法很简单，通过注册NSUncaughtExceptionHandler捕获异常信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 将下面C函数的函数地址当做参数</span><br><span class="line">NSSetUncaughtExceptionHandler(&amp;UncaughtExceptionHandler);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 设置一个C函数，用来接收崩溃信息</span><br><span class="line">void UncaughtExceptionHandler(NSException *exception)</span><br><span class="line">&#123; </span><br><span class="line">    // 可以通过exception对象获取一些崩溃信息，我们就是通过这些崩溃信息来进行解析的，例如下面的symbols数组就是我们的崩溃堆栈。</span><br><span class="line">    NSArray *returnAddresses = [exception callStackReturnAddresses];</span><br><span class="line">    NSArray *symbols = [exception callStackSymbols];</span><br><span class="line">    NSString *reason = [exception reason];</span><br><span class="line">    NSString *name = [exception name];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单看一个数组越界的崩溃信息：<br><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fqy3gvgu3ej31c6124kas.jpg" alt></p>
+<h2 id="Crash日志收集服务"><a href="#Crash日志收集服务" class="headerlink" title="Crash日志收集服务"></a>Crash日志收集服务</h2><p>一般情况下，第三方功能性SDK都会集成一个Crash收集服务，用来及时发现自己SDK的问题，但是当集成了多家服务时往往会出现冲突：NSSetUncaughtExceptionHandler（）这个函数是将函数地址当做参数传递，所以只要重复调用就会被覆盖，这样就不能保证崩溃收集的稳定性。<br>正确的做法是：无论是Signal捕获还是NSException捕获都会存在handler覆盖的问题，我们应该先判断是否前者已经注册了handler，如果有则应该把这个handler保存下来，在自己处理完自己的handler之后，再把这个handler抛出去，供前面的注册者处理。</p>
+<blockquote>
+<p>使用友盟、bugly等第三方崩溃统计工具，原理都是根据系统产生的crash日志进行了一次提取或者封装，然后将封装后的crash文件上传到对应的服务端进行解析处理。优点是快速集成crash收集功能，有完善的后台管理界面和解析处理。</p>
+</blockquote>
+<h2 id="符号化iOS-Crash文件"><a href="#符号化iOS-Crash文件" class="headerlink" title="符号化iOS Crash文件"></a>符号化iOS Crash文件</h2><p>一般收集到的崩溃日志如下：<br>首先要了解符号表，符号表是内存地址与函数名、文件名以及行号的映射表。表示如下：<br><strong>&lt;起始地址&gt; &lt;结束地址&gt; &lt;函数&gt; [&lt;文件名：行号&gt;]</strong><br>为了能够快速并准备定位用户发生crash的代码位置，必须对app发生的crash的程序堆栈进行解析和还原。<br>等我们符号化之后显示如下：<br><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr550q09plj311207gdhd.jpg" alt><br>这样我们就很容易定位到出错的位置。</p>
+<h3 id="异常信息"><a href="#异常信息" class="headerlink" title="异常信息"></a>异常信息</h3><p>异常信息有三种类型</p>
+<ol>
+<li><p>已标记错误位置的，这种信息很明确了不用解析，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000109708aeb -[ViewController buttonClick:] + 43</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有模块地址的情况，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test 0x00000001018157dc 0x100064000 + 24844252</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>以上面为例子，从左到右依次是： 二进制库名（test），调用方法的地址（0x00000001018157dc），模块地址（0x100064000）+偏移地址（24844252）</p>
+<ol start="3">
+<li>无模块地址的情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test 0x00000001018157dc test + 24844252</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>解析有多种，说一种吧（因为没有打包文件，无法获取的SYM文件，以下均为参考）</p>
+<ol>
+<li><p>获取dSYM符号表<br>xcode-&gt;window-&gt;organizer-&gt;右键你的应用 show finder-&gt;右键.xcarchive 显示包内容-&gt;dSYMs-&gt;test.app.dYSM<br>2.atos命令来符号化某个特定模块加载地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atos [-arch 架构名] [-o 符号表] [-l 模块地址] [方法地址]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用终端，进到test.app.dSYM所在目录</p>
+</li>
+</ol>
+<ul>
+<li><p>有模块地址的情况运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无模块地址的情况<br>现将偏移地址转为16进制</p>
+<blockquote>
+<p>24844252 = 0x17B17DC<br>然后方法的地址-偏移地址，得到的就是模块地址<br>0x00000001018157dc - 0x17B17DC = 0x100064000<br>最后运行 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="测试小Demo"><a href="#测试小Demo" class="headerlink" title="测试小Demo"></a>测试小Demo</h2><p>自己写了一个测试小demo， <a href="https://github.com/RiversMaJianCheng/JCCrashTest.git" target="_blank" rel="noopener">戳我查看</a>；</p>
+<p>本文参考：<br><a href="http://www.iosxxx.com/blog/2015-08-29-iosyi-chang-bu-huo.html" target="_blank" rel="noopener">向晨宇的技术博客</a><br><a href="https://www.jianshu.com/p/1b804426d212" target="_blank" rel="noopener">iOS崩溃crash大解析</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+        
+            <div>
+
+<div style="text-align:center;color: #aaa;font-size:18px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+
+</div>
+
+        
+    </div>
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/01/微信小程序入坑指栏/" rel="next" title="微信小程序入坑指栏">
+                <i class="fa fa-chevron-left"></i> 微信小程序入坑指栏
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/12/汇编基础学习/" rel="prev" title="汇编基础学习">
+                汇编基础学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTc0MS8xMjI3Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="RiversMa">
+            
+              <p class="site-author-name" itemprop="name">RiversMa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/RiversMaJianCheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jianchengmadev@gmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/riversma" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#崩溃捕获"><span class="nav-number">1.</span> <span class="nav-text">崩溃捕获</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mach-Exception"><span class="nav-number">1.1.</span> <span class="nav-text">Mach Exception</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用级异常NSException"><span class="nav-number">1.2.</span> <span class="nav-text">应用级异常NSException</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crash日志收集服务"><span class="nav-number">2.</span> <span class="nav-text">Crash日志收集服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号化iOS-Crash文件"><span class="nav-number">3.</span> <span class="nav-text">符号化iOS Crash文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常信息"><span class="nav-number">3.1.</span> <span class="nav-text">异常信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">3.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试小Demo"><span class="nav-number">4.</span> <span class="nav-text">测试小Demo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RiversMa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

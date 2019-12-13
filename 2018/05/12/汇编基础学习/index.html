@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="BSjKGg_yOCPV8pQBlLUFwCLrsxilKinAnZ-5SGInQUU">
+<head><meta name="generator" content="Hexo 3.9.0">
+<meta name="baidu-site-verification" content="y0Sa01ZfbS">
+</head>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="编程语言发展我们都知道，编程语言的过程：由机器语言 -&amp;gt; 汇编语言 -&amp;gt; 高级语言  汇编语言与机器语言是一一对应的关系，每一条机器指令都有与之对应的汇编指令 汇编语言可以通过编译得到机器语言，机器语言可以通过反汇编得到汇编语言 高级语言可以通过编译得到汇编语言或机器语言，反过来几乎不可能还原  汇编语言的特点 可以直接访问、控制各种硬件设备，比如存储器、CPU等，能够最大限度地发挥硬">
+<meta name="keywords" content="学习 生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编基础学习">
+<meta property="og:url" content="http://majiancheng.top/2018/05/12/汇编基础学习/index.html">
+<meta property="og:site_name" content="马建承的博客">
+<meta property="og:description" content="编程语言发展我们都知道，编程语言的过程：由机器语言 -&amp;gt; 汇编语言 -&amp;gt; 高级语言  汇编语言与机器语言是一一对应的关系，每一条机器指令都有与之对应的汇编指令 汇编语言可以通过编译得到机器语言，机器语言可以通过反汇编得到汇编语言 高级语言可以通过编译得到汇编语言或机器语言，反过来几乎不可能还原  汇编语言的特点 可以直接访问、控制各种硬件设备，比如存储器、CPU等，能够最大限度地发挥硬">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr8ocd3f13j314u0d0tab.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1frbz6hm77cj31iu0csjt2.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr8pc73gm7j31f80gijv6.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr8pmkmayqj30p80d8q42.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fr8rup83thj30xo0kemzg.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fr8rvhapf6j30vy07umz4.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr8u5mynhbj30ww0c8jsr.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr8uajg567j30u00n0427.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fr8uty01n7j31240ea3zg.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fr8v4g3mv7j30jk06y74k.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr8vh7td87j311s0g2juq.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fr8xcumsy8j31fe0noqfh.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr8xvztbb9j316k0jq0wi.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr8ygnro5bj31680kuwif.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr9dr8qrv0j315c0bkt9m.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fr9efpt4o2j313y0nan1k.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fr9egm2bpxj316k0na782.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr9elqy7dcj313q0kejv5.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1frc5dg0azej31ii0jmjts.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1frc5q538v6j31180fs75j.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1frc5v3n5tuj30rw0gg3zx.jpg">
+<meta property="og:updated_time" content="2019-12-13T07:49:43.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="汇编基础学习">
+<meta name="twitter:description" content="编程语言发展我们都知道，编程语言的过程：由机器语言 -&amp;gt; 汇编语言 -&amp;gt; 高级语言  汇编语言与机器语言是一一对应的关系，每一条机器指令都有与之对应的汇编指令 汇编语言可以通过编译得到机器语言，机器语言可以通过反汇编得到汇编语言 高级语言可以通过编译得到汇编语言或机器语言，反过来几乎不可能还原  汇编语言的特点 可以直接访问、控制各种硬件设备，比如存储器、CPU等，能够最大限度地发挥硬">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fr8ocd3f13j314u0d0tab.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://majiancheng.top/2018/05/12/汇编基础学习/">
+
+
+
+
+
+  <title>汇编基础学习 | 马建承的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马建承的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://majiancheng.top/2018/05/12/汇编基础学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RiversMa">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马建承的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">汇编基础学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T17:01:44+08:00">
+                2018-05-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-13T15:49:43+08:00">
+                2019-12-13
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,567
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="编程语言发展"><a href="#编程语言发展" class="headerlink" title="编程语言发展"></a>编程语言发展</h2><p>我们都知道，编程语言的过程：由机器语言 -&gt; 汇编语言 -&gt; 高级语言<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr8ocd3f13j314u0d0tab.jpg" alt></p>
+<ol>
+<li>汇编语言与机器语言是一一对应的关系，每一条机器指令都有与之对应的汇编指令</li>
+<li>汇编语言可以通过编译得到机器语言，机器语言可以通过反汇编得到汇编语言</li>
+<li>高级语言可以通过编译得到汇编语言或机器语言，反过来几乎不可能还原</li>
+</ol>
+<h3 id="汇编语言的特点"><a href="#汇编语言的特点" class="headerlink" title="汇编语言的特点"></a>汇编语言的特点</h3><ol>
+<li>可以直接访问、控制各种硬件设备，比如存储器、CPU等，能够最大限度地发挥硬件的功能</li>
+<li>汇编指令是机器指令的助记符，同机器指令一一对应。每一种CPU都有自己的机器指令集\汇编指令集。所以汇编语言不具备可移植性</li>
+<li>知识点过多，开发者需要对CPU等硬件结构有所了解，不易于编写、调试和维护</li>
+<li>不区分大小写，mov和MOV是一样的</li>
+</ol>
+<h3 id="汇编语言的种类"><a href="#汇编语言的种类" class="headerlink" title="汇编语言的种类"></a>汇编语言的种类</h3><p>8086汇编（8086处理器是16bit的CPU）<br>Win32汇编<br>Win64汇编<br>AT&amp;T汇编（Mac，iOS模拟器）<br>ARM汇编（嵌入式，iOS设备）<br>……<br><strong>注：本文讨论的是8086汇编（结构简单，比较经典）</strong></p>
+<p>我们的软件或者程序都是存储在硬盘中，运行时装载在内存上，CPU通过读取内存中的指令进行控制计算机<br>其中最为关键的是要了解CPU和内存，因为汇编语言绝大部分指令都是与这两个相关的如下图：<br><img src="https://ws3.sinaimg.cn/large/006tKfTcly1frbz6hm77cj31iu0csjt2.jpg" alt><br>下面了解一些基本概念：</p>
+<h3 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h3><ol>
+<li>每一个CPU芯片都有许多管脚，这些管脚和总线相连，CPU通过总线与外部器件进行交互<br>总线：一根根导线的集合<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr8pc73gm7j31f80gijv6.jpg" alt></li>
+</ol>
+<p>总线的分类：<br>地址总线</p>
+<blockquote>
+<p>它的宽度决定了CPU的寻址能力<br>8086的地址总线宽度是20，所以寻址能力是1M（2^20）<br><strong>注：8086CPU地址总线20位，作用是来指定存储器单元，每个内存单元是1byte，所以地址总线决定了CPU寻址能力。计算方法为2^n(n为总线位数)。</strong></p>
+</blockquote>
+<p>数据总线</p>
+<blockquote>
+<p>它的宽度决定了CPU的单次数据传送量，也就是数据传送速度<br>8086的数据总线宽度是16，所以单次最大传递2个字节的数据</p>
+</blockquote>
+<p>控制总线</p>
+<blockquote>
+<p>它的宽度决定了CPU对其他器件的控制能力，有多少种控制</p>
+</blockquote>
+<p>CPU从内存的3号单元读取数据：<br>首先CPU通过地址总线把3号单元的地址传输到内存，通过控制总线来识别是读还是写命令，最后通过数据总线传输数据。<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr8pmkmayqj30p80d8q42.jpg" alt></p>
+<p>这里需要注意的是8086CPU是16位的，但是地址总线是20位的。16位的CPU内部能够一次性处理、传输和暂存的地址是16位，如果将地址从内部简单地发出，那么它只能送出16位的地址，这就浪费了20位的总线。这不科学啊。实际上是采用一种在内部用2个16位地址合成方法来生成1个20位的物理地址。如下图：<br><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fr8rup83thj30xo0kemzg.jpg" alt><br><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fr8rvhapf6j30vy07umz4.jpg" alt></p>
+<p>地址加法器采用地址合成方式是：段地址X16+偏移地址 的方式来寻址的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">地址合成：</span><br><span class="line">段地址：1200H</span><br><span class="line">偏移地址：1000H</span><br><span class="line">物理地址 = 段地址 X 16 + 偏移地址</span><br><span class="line">物理地址 = 段地址 X 10H + 偏移地址</span><br><span class="line">物理地址 = 1200H X 10H + 1000H = 13000H</span><br></pre></td></tr></table></figure></p>
+<p>CPU可以用不同的段地址和偏移地址形成同一个物理地址。<br>因为偏移地址为16位，16位地址的寻址能力为64KB，所以一个段的长度最大为64K。</p>
+<p>CPU的典型构成：<br><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr8u5mynhbj30ww0c8jsr.jpg" alt></p>
+<blockquote>
+<p>对程序员来说，CPU中最主要部件是寄存器，可以通过改变寄存器的内容来实现对CPU的控制<br>不同的CPU，寄存器的个数、结构是不相同的（8086是16位结构的CPU）<br>8086有14个寄存器<br>都是16位的寄存器<br>可以存放2个字节<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr8uajg567j30u00n0427.jpg" alt></p>
+</blockquote>
+<h3 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AX、BX、CX和DX这4个寄存器通常用来存放一般性的数据，称为通用寄存器</span><br><span class="line">通常CPU会先将内存中的数据存储到通用寄存器中，然后再对通用寄存器中的数据进行运算</span><br><span class="line">假设内存中有块红色内存空间的值是3，现在想把它的值加1，并将结果存储到蓝色内存空间里</span><br><span class="line"></span><br><span class="line">CPU首先会将红色内存空间的值放到AX寄存器中：mov ax，红色内存空间</span><br><span class="line">然后让AX寄存器与1相加：add ax，1</span><br><span class="line">最后将值赋值给内存空间：mov 蓝色内存空间，ax</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fr8uty01n7j31240ea3zg.jpg" alt></p>
+<p><strong>字节与字</strong></p>
+<ol>
+<li>汇编的数据存储中，有2个比较常用的单位</li>
+</ol>
+<ul>
+<li>字节：byte，1个字节8bit组成，可以存储在8位寄存器中</li>
+<li>字：word，1个字由2个字节组成，这两个字节分别称为字的高字节和低字节</li>
+</ul>
+<ol start="2">
+<li>比如数据20000（4E20H，0100111000100000B），高字节的值是78，低字节的值是32<br><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fr8v4g3mv7j30jk06y74k.jpg" alt></li>
+<li>1个字可以存在1个16位寄存器中，这个字的高字节、低字节分别存储在这个寄存器的高8位寄存器、低8位寄存器中<h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3>8086在访问内存时要由相关部件提供内存单元的段地址和偏移地址，送入地址加法器合成物理地址<br>是什么部件提供段地址？段地址在8086的段寄存器中存放<br>8086有4个段寄存器：CS、DS、SS、ES，当CPU需要访问内存时由这4个段寄存器提供内存单元的段地址<br>CS (Code Segment)：代码段寄存器<br>DS (Data Segment)：数据段寄存器<br>SS (Stack Segment)：堆栈段寄存器<br>ES (Extra Segment)：附加段寄存器</li>
+</ol>
+<h3 id="CS和IP"><a href="#CS和IP" class="headerlink" title="CS和IP"></a>CS和IP</h3><p>CS为代码段寄存器，IP为指令指针寄存器，它们指示了CPU当前要读取指令的地址<br>任意时刻，8086CPU都会将CS:IP指向的指令作为下一条需要取出执行的指令<br><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr8vh7td87j311s0g2juq.jpg" alt><br>CPU从何处执行指令是由CS、IP中的内容决定的。我们可以通过改变CS、IP指令来更改目标指令。</p>
+<h3 id="DS和-address"><a href="#DS和-address" class="headerlink" title="DS和 [address]"></a>DS和 [address]</h3><p>CPU要读写一个内存单元时，必须要先给出这个内存单元的地址，在8086中，内存地址由段地址和偏移地址组成<br>8086中有一个DS段寄存器，通常用来存放要访问数据的段地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov bx, 1000H</span><br><span class="line">mov ds, bx</span><br><span class="line">mov al, [0]</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>上面3条指令的作用将10000H（1000:0）中的内存数据赋值到al寄存器中<br>mov al,[address]的意思将DS:address中的内存数据赋值到al寄存器中<br>由于al是8位寄存器，所以是将一个字节的数据赋值给al寄存器</p>
+</blockquote>
+<p>字型数据的传递（2个字节）<br><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fr8xcumsy8j31fe0noqfh.jpg" alt></p>
+<p><strong>jmp指令</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CPU从何处执行指令是由CS，IP的内容决定的，我们可以通过改变CS、IP的内容来控制CPU执行目标指令</span><br><span class="line">8086提供了一个mov指令（传送指令），可以用来修改大部分寄存器的值，比如</span><br><span class="line"> mov ax, 10、mov bx, 20、mov cx, 30、mov dx, 40</span><br><span class="line">但是，mov指令不能用于设置CS、IP的值，8086没有提供这样的功能</span><br><span class="line">8086提供了另外的指令来修改CS、IP的值，这些指令统称为转移指令，最简单的jmp指令</span><br><span class="line">jmp 2AE3:3,执行后：CS=2AE3H，IP=0003H，CPU将从2AE33H处读取指令。</span><br></pre></td></tr></table></figure></p>
+<p><strong>“jmp 段地址：偏移地址” 指令的功能为：用指令中给出的段地址修改CS，偏移地址修改IP</strong></p>
+<h3 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a>大小端</h3><p>大端模式，是指数据的高字节保存在内存的低地址中，而数据的低字节保存在内存的高地址中（高低\低高） (Big Endian)<br>小端模式，是指数据的高字节保存在内存的高地址中，而数据的低字节保存在内存的低地址中（高高\低低） (Little Endian)<br><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr8xvztbb9j316k0jq0wi.jpg" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Big Endian: PowerPC, IBM, SUN</span><br><span class="line">Little Endian: x86, DEC</span><br><span class="line">ARM既可以工作大段模式，也可以小段模式</span><br></pre></td></tr></table></figure></p>
+<p>字型数据的传递（2个字节）<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr8ygnro5bj31680kuwif.jpg" alt></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈：是一种具有特殊的访问方式的存储空间（后进先出， Last In Out Firt，LIFO）<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr9dr8qrv0j315c0bkt9m.jpg" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">8086会将CS作为代码段的段地址，将CS:IP指向的指令作为下一条需要取出执行的指令</span><br><span class="line">8086会将DS作为数据段的段地址，mov ax,[address]就是取出DS:address的内存数据放到ax寄存器中</span><br><span class="line">8086会将SS作为栈段的段地址，任意时刻，SS:SP指向栈顶元素</span><br><span class="line">8086提供了PUSH（入栈）和POP （出栈）指令来操作栈段的数据</span><br><span class="line">比如push ax是将ax的数据入栈，pop ax是将栈顶的数据送入ax</span><br></pre></td></tr></table></figure></p>
+<p>push AX：流程图<br><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fr9efpt4o2j313y0nan1k.jpg" alt></p>
+<p>pop AX：流程图<br><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fr9egm2bpxj316k0na782.jpg" alt></p>
+<p>在8086CPU中，push和pop操作的数据都是2个字节<br>push和pop指令格式：<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fr9elqy7dcj313q0kejv5.jpg" alt></p>
+<p><strong>注意：使用栈时，最需要注意的是栈顶越界的问题，这里尤其是需要注意的是递归调用，或者函数嵌套调用太多都会导致这个问题（将函数转成汇编就很容易看出来）</strong></p>
+<h2 id="段的总结"><a href="#段的总结" class="headerlink" title="段的总结"></a>段的总结</h2><blockquote>
+<p>我们可以用一个段存放数据，将它称为“数据段”，同理存放代码的段定义为“代码段”，也可以用一个段当做栈，将它定义为“栈段”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对于数据段：将它的段地址放在DS中，用mov，add，sub等访问内存单元的指令时，CPU就将我们定义的数据段中的内容当做数据段来访问</span><br><span class="line">对于代码段：将它的段地址放在CS中，将段中第一条指令的偏移地址放在IP中，这样CPU就将执行我们定义的代码段中的指令。</span><br><span class="line">对于栈段：将它的段地址放在SS中，将栈顶单元的偏移地址放在SP中，这样CPU在需要进行栈操作的时候，比如执行push、pop指令等，就将我们定义的栈段当做栈空间来用。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><p>一个有意义的汇编程序中，至少有一个段作为代码段存放代码，segment和ends的作用是定义一个段，segment代表一个段的开始，ends代表一个段的结束，使用格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">段名 segment</span><br><span class="line">    ...</span><br><span class="line">段名 ends</span><br></pre></td></tr></table></figure></p>
+<h3 id="退出程序以及相关代码段："><a href="#退出程序以及相关代码段：" class="headerlink" title="退出程序以及相关代码段："></a>退出程序以及相关代码段：</h3><p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1frc5dg0azej31ii0jmjts.jpg" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">常见中断</span><br><span class="line">int 10h用于执行BIOS中断</span><br><span class="line">int 3是“断点中断”，用于调试程序</span><br><span class="line">int 21h用于执行DOS系统功能调用，AH寄存器存储功能号</span><br></pre></td></tr></table></figure></p>
+<p>代码段中存放代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">code segment</span><br><span class="line">    db 55h, 66h, 77h, 88h</span><br><span class="line">    db 10 dup(22) :重复定义10个，22</span><br><span class="line">:程序入口开始</span><br><span class="line">start:</span><br><span class="line">    mov ax, cs:[0]</span><br><span class="line">    mov bx, cs:[2]</span><br><span class="line">    :推出程序</span><br><span class="line">    mov ax, 4c00h</span><br><span class="line">    int 21h</span><br><span class="line">code ends</span><br><span class="line"></span><br><span class="line">:程序入口在start</span><br><span class="line">end start</span><br></pre></td></tr></table></figure></p>
+<p>打印字符串代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code, ds:data : 这是给开发者看的，屁用没有</span><br><span class="line">: -----数据段 开始------</span><br><span class="line">data segment</span><br><span class="line">    : db &apos;Hello World!$&apos;  : $  代表字符串的结束</span><br><span class="line">    age db 20h</span><br><span class="line">    no dw 30h</span><br><span class="line">    db 10 dup(6)</span><br><span class="line">    string  db &apos;Hello World!$&apos;  : $  代表字符串的结束</span><br><span class="line">data ends</span><br><span class="line">: -----数据段 结束------</span><br><span class="line"></span><br><span class="line">: -----代码据段 开始------</span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    :设置ds的值</span><br><span class="line">    mov ax, data</span><br><span class="line">    mov ds, ax  : DS:DX=串地址 &apos;$&apos;结束字符串</span><br><span class="line">    </span><br><span class="line">    mov ax, no</span><br><span class="line">    mov bh, age</span><br><span class="line">    </span><br><span class="line">    : 打印字符串</span><br><span class="line">    mov dx, offset string : offset string 代表string的偏移地址</span><br><span class="line">    mov ah, 9h : ah = 9h 代表显示字符串</span><br><span class="line">    int 21h</span><br><span class="line">    </span><br><span class="line">    : 推出程序</span><br><span class="line">    mov ax, 4c00h</span><br><span class="line">    int 21h</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure></p>
+<p>全局变量在编译时就确定了内存地址。</p>
+<h3 id="call和ret指令"><a href="#call和ret指令" class="headerlink" title="call和ret指令"></a>call和ret指令</h3><p>call：相当于调用，将下一条指令的偏移地址入栈后，转到标号处执行指令<br>ret：代表return的意思，将栈顶的值出栈，赋值给ip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code, ds:data, ss:stack</span><br><span class="line"></span><br><span class="line">: 栈段</span><br><span class="line">stack segment</span><br><span class="line">    db 100 dup(10)</span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">: 数据段</span><br><span class="line">data segment</span><br><span class="line">    a dw 0</span><br><span class="line">    db 100 dup(0)</span><br><span class="line">    string db &apos;Hello!$&apos;</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">: 代码段</span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    : 手动设置ds， ss的值</span><br><span class="line">    mov ax, data</span><br><span class="line">    mov ds, ax</span><br><span class="line">    mov ax, stack</span><br><span class="line">    mov ss, ax</span><br><span class="line">    </span><br><span class="line">    : 业务逻辑</span><br><span class="line">    call mathFunc</span><br><span class="line">    mov bx, [0]</span><br><span class="line">    </span><br><span class="line">    call mathFunc2</span><br><span class="line">    mov bx, a</span><br><span class="line">    </span><br><span class="line">    call mathFunc3</span><br><span class="line">    mov bx, ax</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    mov ax, 1122h</span><br><span class="line">    mov bx, 3344h</span><br><span class="line">    add ax, bx</span><br><span class="line">    : 退出</span><br><span class="line">    mov ax, 4c00h</span><br><span class="line">    int 21h</span><br><span class="line">    </span><br><span class="line">: 返回2的3次方</span><br><span class="line">: 返回值放到ds:0 中</span><br><span class="line">: 打印字符串</span><br><span class="line">mathFunc:</span><br><span class="line">    : ds：dx 告知字符串地址</span><br><span class="line">    </span><br><span class="line">    mov ax, 2</span><br><span class="line">    add ax, ax</span><br><span class="line">    add ax, ax</span><br><span class="line">    mov [0], ax</span><br><span class="line">    </span><br><span class="line">    : 打印字符串</span><br><span class="line">    : mov dx, offset string</span><br><span class="line">    : mov ah, 9h</span><br><span class="line">    : int 21h</span><br><span class="line">    ret : 调用此之后跳到调用这个方法的下一个地址,有push操作</span><br><span class="line">    </span><br><span class="line">: 返回2的3次方</span><br><span class="line">: 返回值放到a中</span><br><span class="line">mathFunc2:</span><br><span class="line">    mov ax, 2</span><br><span class="line">    add ax, ax</span><br><span class="line">    add ax, ax</span><br><span class="line">    </span><br><span class="line">    mov a, ax</span><br><span class="line">    ret</span><br><span class="line"></span><br><span class="line">: 返回2的3次方</span><br><span class="line">: 返回值放到ax寄存器中</span><br><span class="line">mathFunc3:</span><br><span class="line">    mov ax, 2</span><br><span class="line">    add ax, ax</span><br><span class="line">    add ax, ax</span><br><span class="line">    : 直接将数据放入寄存器是最快的方法</span><br><span class="line">    ret</span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line">start end</span><br></pre></td></tr></table></figure></p>
+<h3 id="传参以及栈平衡"><a href="#传参以及栈平衡" class="headerlink" title="传参以及栈平衡"></a>传参以及栈平衡</h3><p>栈平衡: 函数调用前后的栈顶指针要一致<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code, ds:data, ss:stack</span><br><span class="line"></span><br><span class="line">: 栈段</span><br><span class="line">stack segment</span><br><span class="line">db 100 dup(10)</span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">: 数据段</span><br><span class="line">data segment</span><br><span class="line">a dw 0</span><br><span class="line">db 100 dup(0)</span><br><span class="line">string db &apos;Hello!$&apos;</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">: 代码段</span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    : 手动设置ds， ss的值</span><br><span class="line">    mov ax, data</span><br><span class="line">    mov ds, ax</span><br><span class="line">    mov ax, stack</span><br><span class="line">    mov ss, ax</span><br><span class="line"></span><br><span class="line">    : 业务逻辑</span><br><span class="line">    /*</span><br><span class="line">    mov cx, 10h</span><br><span class="line">    mov dx, 20h</span><br><span class="line">    call sum1</span><br><span class="line">    */</span><br><span class="line">    </span><br><span class="line">    /*</span><br><span class="line">    mov word ptr [0], 1122h</span><br><span class="line">    mov word ptr [2], 2233h</span><br><span class="line">    call sum2</span><br><span class="line">    */</span><br><span class="line">    </span><br><span class="line">    : 这里有个问题如果push太多的话,会使得栈内存泄露,不再平衡</span><br><span class="line">    push 1122h</span><br><span class="line">    push 2233h</span><br><span class="line">    call sum3</span><br><span class="line">    add sp,4 : 恢复栈平衡,sp栈顶指针加4个字节</span><br><span class="line">    </span><br><span class="line">    : 退出</span><br><span class="line">    mov ax, 4c00h</span><br><span class="line">    int 21h</span><br><span class="line">: 返回值放ax寄存器中</span><br><span class="line">: 传递2个参数(放入栈中)</span><br><span class="line">sum3:</span><br><span class="line">    : 访问栈中的参数</span><br><span class="line">    mov bp, sp</span><br><span class="line">    mov ax, ss:[bp+2]</span><br><span class="line">    add ax, ss:[bp+4]</span><br><span class="line">    ret</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line"> : 返回值放ax寄存器中</span><br><span class="line"> : 传递2个参数(分别放ds:0,ds:2中)</span><br><span class="line"> sum2:</span><br><span class="line">     mov ax, [0]</span><br><span class="line">     add ax, [2]</span><br><span class="line">     ret</span><br><span class="line"> </span><br><span class="line">: 返回值放ax寄存器中</span><br><span class="line">: 传递2个参数(分别放cx,dx中)</span><br><span class="line">sum1:</span><br><span class="line">    mov ax, cx</span><br><span class="line">    add ax, dx</span><br><span class="line">    ret</span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure></p>
+<p>函数调用函数 ,这里演示递归调用如果嵌套过多的话就会导致栈溢出,程序崩溃<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code, ds:data, ss:stack</span><br><span class="line"></span><br><span class="line">: 栈段</span><br><span class="line">stack segment</span><br><span class="line">db 100 dup(10)</span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">: 数据段</span><br><span class="line">data segment</span><br><span class="line">a dw 0</span><br><span class="line">db 100 dup(0)</span><br><span class="line">string db &apos;Hello!$&apos;</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">: 代码段</span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    : 手动设置ds， ss的值</span><br><span class="line">    mov ax, data</span><br><span class="line">    mov ds, ax</span><br><span class="line">    mov ax, stack</span><br><span class="line">    mov ss, ax</span><br><span class="line"></span><br><span class="line">    : 业务逻辑</span><br><span class="line">    push 1122h</span><br><span class="line">    push 3344h</span><br><span class="line">    call sum</span><br><span class="line">    add sp, 4 : 外平栈</span><br><span class="line">    </span><br><span class="line">    : 退出</span><br><span class="line">    mov ax, 4c00h</span><br><span class="line">    int 21h</span><br><span class="line"></span><br><span class="line">: 返回值放ax寄存器中</span><br><span class="line">: 传递2个参数(放入栈中)</span><br><span class="line">sum:</span><br><span class="line">    mov bp, sp</span><br><span class="line">    mov ax, ss:[bp+2]</span><br><span class="line">    add ax, ss:[bp+4]</span><br><span class="line">    </span><br><span class="line">    push 1122h</span><br><span class="line">    push 3344h</span><br><span class="line">    call minus</span><br><span class="line">    add sp, 4</span><br><span class="line">    </span><br><span class="line">    ret 4 :内平栈  ,外平栈和内平栈只用一个就好</span><br><span class="line"></span><br><span class="line">minus:</span><br><span class="line">    : 访问栈中的参数</span><br><span class="line">    : 存储bp</span><br><span class="line">    push bp</span><br><span class="line">    mov bp, sp</span><br><span class="line">    sub sp, 10 : 预留10个字节的空间给局部变量</span><br><span class="line">    </span><br><span class="line">    : 保护可能会用到的寄存器</span><br><span class="line">    push si</span><br><span class="line">    push di</span><br><span class="line">    push bx</span><br><span class="line">    </span><br><span class="line">    : 为了防止其他访问到未赋值的局部变量地址,而这个地址为非法值,进行填充</span><br><span class="line">    </span><br><span class="line">    : 给局部变量填充 int 3 (cccc) 中断程序</span><br><span class="line">    mov ax, 0cccch</span><br><span class="line">    : 让es等于 ss</span><br><span class="line">    mov bx, ss</span><br><span class="line">    mov es, bx</span><br><span class="line">    : 让di 等于bp - 10 (局部变量地址最小的区域)</span><br><span class="line">    mov di, bp</span><br><span class="line">    sub di, 10</span><br><span class="line">    : cx 决定了stosw的执行次数</span><br><span class="line">    mov cx, 5</span><br><span class="line">    rep stosw</span><br><span class="line">    : rep的作用,重复执行某个指令(执行的次数由cx决定)</span><br><span class="line">    </span><br><span class="line">    : ---业务逻辑 begain------</span><br><span class="line">    : 定义两个局部变量</span><br><span class="line">    mov word ptr ss:[bp-2], 3</span><br><span class="line">    mov word ptr ss:[bp-4], 4</span><br><span class="line">    mov ax, ss:[bp-2]</span><br><span class="line">    add ax, ss:[bp-4]</span><br><span class="line">    mov ss:[bp-6], ax</span><br><span class="line">    </span><br><span class="line">    : 访问栈中的参数</span><br><span class="line">    mov ax, ss:[bp+4]</span><br><span class="line">    add ax, ss:[bp+6]</span><br><span class="line">    add ax , ss[bp-6]</span><br><span class="line">    : ---业务逻辑 begain------</span><br><span class="line">    </span><br><span class="line">    // 恢复寄存器的值</span><br><span class="line">    pop bx</span><br><span class="line">    pop di</span><br><span class="line">    pop si</span><br><span class="line">    </span><br><span class="line">    : 恢复 sp</span><br><span class="line">    mov sp, bp</span><br><span class="line">    : 恢复 bp</span><br><span class="line">    pop bp</span><br><span class="line">    </span><br><span class="line">    ret</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure></p>
+<p>函数调用的本质:</p>
+<ol>
+<li>参数:push参数值</li>
+<li>返回值,返回值存放ax中</li>
+<li>栈平衡</li>
+</ol>
+<p><strong>函数调用的流程(内存)</strong></p>
+<blockquote>
+<p>1.push 参数<br>2.push 函数的返回地址<br>3.push bp (保留bp之前的值,方便以后的恢复)<br>4.mov bp, sp (保留sp之前的值,方便以后恢复)<br>5.sub sp, 空间大小 (分配空间给局部变量)<br>6.保护可能要用到的寄存器</p>
+<ol start="7">
+<li>使用CC(int 3)填充局部变量的空间</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>8.========执行业务逻辑=========</p>
+</blockquote>
+<blockquote>
+<p>9.恢复寄存器之前的值<br>10.mov sp, bp (恢复sp之前的值)<br>11.pop bp (恢复bp之前的值)<br>12.ret (将函数的返回值地址出栈,执行下一条指令)</p>
+<ol start="13">
+<li>恢复栈平衡 (add sp, 参数所占的空间)</li>
+</ol>
+</blockquote>
+<p>loop指令</p>
+<blockquote>
+<p>loop指令和cx配合使用，用于循环执行重复的操作，类似于高级语言中的for、while循环</p>
+</blockquote>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1frc5q538v6j31180fs75j.jpg" alt></p>
+<blockquote>
+<p>loop指令的执行流程<br>1）让cx的值 -1，即 cx = cx - 1<br>2）判断cx的值<br>如果不为0，转至标号处执行程序，然后重复1）<br>如果为0则执行loop后面的代码<br><img src="https://ws4.sinaimg.cn/large/006tKfTcly1frc5v3n5tuj30rw0gg3zx.jpg" alt></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+        
+            <div>
+
+<div style="text-align:center;color: #aaa;font-size:18px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+
+</div>
+
+        
+    </div>
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/03/iOS崩溃日志分析/" rel="next" title="iOS异常捕获">
+                <i class="fa fa-chevron-left"></i> iOS异常捕获
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/15/常见基本算法/" rel="prev" title="常见基本算法">
+                常见基本算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTc0MS8xMjI3Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="RiversMa">
+            
+              <p class="site-author-name" itemprop="name">RiversMa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/RiversMaJianCheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jianchengmadev@gmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/riversma" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编程语言发展"><span class="nav-number">1.</span> <span class="nav-text">编程语言发展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#汇编语言的特点"><span class="nav-number">1.1.</span> <span class="nav-text">汇编语言的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#汇编语言的种类"><span class="nav-number">1.2.</span> <span class="nav-text">汇编语言的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线"><span class="nav-number">1.3.</span> <span class="nav-text">总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用寄存器"><span class="nav-number">1.4.</span> <span class="nav-text">通用寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段寄存器"><span class="nav-number">1.5.</span> <span class="nav-text">段寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CS和IP"><span class="nav-number">1.6.</span> <span class="nav-text">CS和IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DS和-address"><span class="nav-number">1.7.</span> <span class="nav-text">DS和 [address]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大小端"><span class="nav-number">1.8.</span> <span class="nav-text">大小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">1.9.</span> <span class="nav-text">栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#段的总结"><span class="nav-number">2.</span> <span class="nav-text">段的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序"><span class="nav-number">3.</span> <span class="nav-text">程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#退出程序以及相关代码段："><span class="nav-number">3.1.</span> <span class="nav-text">退出程序以及相关代码段：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call和ret指令"><span class="nav-number">3.2.</span> <span class="nav-text">call和ret指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传参以及栈平衡"><span class="nav-number">3.3.</span> <span class="nav-text">传参以及栈平衡</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RiversMa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

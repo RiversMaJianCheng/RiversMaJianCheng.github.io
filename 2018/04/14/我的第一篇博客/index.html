@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="BSjKGg_yOCPV8pQBlLUFwCLrsxilKinAnZ-5SGInQUU">
+<head><meta name="generator" content="Hexo 3.9.0">
+<meta name="baidu-site-verification" content="y0Sa01ZfbS">
+</head>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文介绍了Mac下Hexo+GitHub-Pages搭建个人博客的一个完整方案，以及遇到问题时的解决办法。 搭建步骤： 安装Git 安装Node.js 安装Hexo GitHub创建个人仓库 将博客与GitHub相关联 获得个人网站域名并绑定域名  安装Git 首先介绍Git：简单说Git是开源的分布式版本控制系统，用于敏捷高效地处理项目，尤其是多人共同维护同一个项目时，我们网站本地搭建好之后需要">
+<meta name="keywords" content="学习 生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下Hexo+GitHub-Pages搭建个人博客">
+<meta property="og:url" content="http://majiancheng.top/2018/04/14/我的第一篇博客/index.html">
+<meta property="og:site_name" content="马建承的博客">
+<meta property="og:description" content="本文介绍了Mac下Hexo+GitHub-Pages搭建个人博客的一个完整方案，以及遇到问题时的解决办法。 搭建步骤： 安装Git 安装Node.js 安装Hexo GitHub创建个人仓库 将博客与GitHub相关联 获得个人网站域名并绑定域名  安装Git 首先介绍Git：简单说Git是开源的分布式版本控制系统，用于敏捷高效地处理项目，尤其是多人共同维护同一个项目时，我们网站本地搭建好之后需要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://majiancheng.top/images/hexo_node_npm.png">
+<meta property="og:image" content="http://majiancheng.top/images/hexo_install_io.png">
+<meta property="og:image" content="http://majiancheng.top/images/hexo-3.png">
+<meta property="og:image" content="http://majiancheng.top/images/hexo-4.png">
+<meta property="og:image" content="http://majiancheng.top/images/hexo-5.png">
+<meta property="og:image" content="http://majiancheng.top/images/hexo-7.png">
+<meta property="og:updated_time" content="2019-12-13T07:49:43.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac下Hexo+GitHub-Pages搭建个人博客">
+<meta name="twitter:description" content="本文介绍了Mac下Hexo+GitHub-Pages搭建个人博客的一个完整方案，以及遇到问题时的解决办法。 搭建步骤： 安装Git 安装Node.js 安装Hexo GitHub创建个人仓库 将博客与GitHub相关联 获得个人网站域名并绑定域名  安装Git 首先介绍Git：简单说Git是开源的分布式版本控制系统，用于敏捷高效地处理项目，尤其是多人共同维护同一个项目时，我们网站本地搭建好之后需要">
+<meta name="twitter:image" content="http://majiancheng.top/images/hexo_node_npm.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://majiancheng.top/2018/04/14/我的第一篇博客/">
+
+
+
+
+
+  <title>Mac下Hexo+GitHub-Pages搭建个人博客 | 马建承的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马建承的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://majiancheng.top/2018/04/14/我的第一篇博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RiversMa">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马建承的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac下Hexo+GitHub-Pages搭建个人博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T17:12:06+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-13T15:49:43+08:00">
+                2019-12-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">博客搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,075
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍了Mac下Hexo+GitHub-Pages搭建个人博客的一个完整方案，以及遇到问题时的解决办法。</p>
+<h2 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h2><ul>
+<li>安装Git</li>
+<li>安装Node.js</li>
+<li>安装Hexo</li>
+<li>GitHub创建个人仓库</li>
+<li>将博客与GitHub相关联</li>
+<li>获得个人网站域名并绑定域名</li>
+</ul>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><ol>
+<li>首先介绍Git：简单说Git是开源的分布式版本控制系统，用于敏捷高效地处理项目，尤其是多人共同维护同一个项目时，我们网站本地搭建好之后需要使用Git同步到GitHub上。可以从官网下载：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git-Downloading Package</a> 选择你的电脑配置并下载。（你也可以参考这个教程<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰老师的git教程</a>）Mac下的Xcode自动集成了git，所以这步就不用做了。</li>
+</ol>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><ol>
+<li>因为Hexo是基于Node.js，所以必须首先安装Node.js。</li>
+<li>进入官网下载安装包：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a>。下载后双击按照提示安装。</li>
+<li><p>注意：安装Node.js会包含环境变量及npm的安装，安装好之后检测Node.js是否安装成功，输入命令行：</p>
+<blockquote>
+<p>node -v </p>
+</blockquote>
+<p> 检测npm是否安装成功，命令行中输入：</p>
+<blockquote>
+<p>npm -v</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/images/hexo_node_npm.png" alt="hexo.png"></p>
+<p><strong>如果出现类似以上的图片说明就没问题，那么安装Hexo的环境已经全部搭建完成。</strong></p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>Hexo就是我们的个人博客网站的框架，这里需要自己在电脑里创建一个文件夹，可以命名为MyBlog，Hexo框架与以后你自己发布的网页都在这个文件夹中。然后cd到这个文件夹。</p>
+<ol>
+<li><p>使用npm命令安装Hexo，输入（这时的命令都在MyBlog文件夹中）：</p>
+<blockquote>
+<p>npm install -g hexo-cli</p>
+</blockquote>
+<p> 这个安装时间会比较长，请耐心等待，安装好之后初始化我们的博客，输入：</p>
+<blockquote>
+<p>hexo init blog</p>
+</blockquote>
+</li>
+<li><p>至此，我们的网站雏形就搭建好了，是不是很简单，下面我们大致看一下，请分别输入以下命令：</p>
+<blockquote>
+<p>hexo new test_my_site<br>hexo g<br>hexo s</p>
+</blockquote>
+</li>
+</ol>
+<p>然后打开浏览器输入地址：localhost:4000 就可以看到初始化的网站情况了。<br>tips: 给出几个Hexo命令</p>
+<blockquote>
+<p>npm install hexo -g #安装<br>npm update hexo -g #升级<br>hexo init #初始化博客<br>命令简写：<br>hexo n “我的博客” == hexo new “我的博客”  #新建文章<br>hexo g == hexo generate #生成<br>hexo s == hexo server #启动服务预览<br>hexo d == hexo deploy #部署<br>hexo server     #Hexo会监视文件变动并自动更新，无须重启服务器<br>hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令（建议每次部署前都clean一下）</p>
+</blockquote>
+<h3 id="GitHub创建个人仓库"><a href="#GitHub创建个人仓库" class="headerlink" title="GitHub创建个人仓库"></a>GitHub创建个人仓库</h3><p>GitHub创建个人仓库比较简单，这里说下注意点：<br><strong>创建个人仓库时的名称一定要注意：仓库的名字为XXX.github.io，XXX为自己的GitHub用户名</strong><br><strong>创建个人仓库时的名称一定要注意：仓库的名字为XXX.github.io，XXX为自己的GitHub用户名</strong><br><strong>创建个人仓库时的名称一定要注意：仓库的名字为XXX.github.io，XXX为自己的GitHub用户名</strong><br>重要的事情说三遍！！！</p>
+<p><img src="/images/hexo_install_io.png" alt="注意"><br><strong><em>请务必遵照以上格式！</em></strong></p>
+<h3 id="将博客与GitHub相关联"><a href="#将博客与GitHub相关联" class="headerlink" title="将博客与GitHub相关联"></a>将博客与GitHub相关联</h3><ol>
+<li>打开本地的MyBlog文件夹，进入blog根目录中的_config.yml配置文件，下滑到最后设置以下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https://github.com/RiversMaJianCheng/RiversMaJianCheng.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>设置好之后运行：</p>
+<blockquote>
+<p>npm install hexo-deployer-git –save<br>hexo g<br>hexo d</p>
+</blockquote>
+<p>此时就将本地静态文件推送到GitHub上了。<br>可以这么验证：打开浏览器，访问：<a href="http://RiversMaJianCheng.github.io" target="_blank" rel="noopener">http://RiversMaJianCheng.github.io</a> 就可以看到博客的雏形了。</p>
+<h3 id="获得个人网站域名并绑定"><a href="#获得个人网站域名并绑定" class="headerlink" title="获得个人网站域名并绑定"></a>获得个人网站域名并绑定</h3><p>域名是网站的入口，也是网站的第一印象。申请域名的地方比较多，这里推荐一个大家常用的阿里云：<a href="https://wanwang.aliyun.com/domain/" target="_blank" rel="noopener">域名注册</a> 购买域名也是我们整个搭建过程中唯一一个需要花钱的地方。如果你有空闲的域名则无需购买，直接使用即可。</p>
+<p><strong>将GitHub Pages地址解析到个人域名</strong></p>
+<blockquote>
+<p>GitHub Pages 是面向用户、组织和项目开放的公共静态页面搭建托管服务，站点可以被免费托管在GItHub上，我们可以选择使用GitHub Pages 默认提供的域名github.io或者自定义域名来发布站点。为了让自己的博客看起来更正式，我将绑定自己的域名。</p>
+</blockquote>
+<ol>
+<li>在blog文件夹的根目录中的source文件新建一个CNAME文件（无后缀名），然后打开输入你购买的域名:<br>下面以我自己的域名举例：majiancheng.top  <strong>注意：前面没有http://，也没有www</strong>，然后用hexo 命令部署到github。<br><img src="/images/hexo-3.png" alt="hexo-3"><br><img src="/images/hexo-4.png" alt="hexo-4"></li>
+<li>添加域名解析<br>（1）先添加一个CNAME，主机记录写@，后面记录值写上你的RiversMaJianCheng.github.io<br>（2）再添加一个CNAME，主机记录写www，后面记录值也写RiversMaJianCheng.github.io</li>
+</ol>
+<p>如下图：<br><img src="/images/hexo-5.png" alt="hexo-5"><br><strong> 注：</strong> 这样别人用www和不用www都能访问你的网站，其实www的方式会先解析成 http//RiversMaJianCheng.github.io，然后根据CNAME再变成http//majiancheng.top,即中间是经历过一次转还的。上面，我用的是CNAME别名记录，也有人使用A记录，后面的记录值是写GitHub pages里面的IP地址，但有时候IP地址会更改，导致解析不正确，所以推荐使用CANME，不建议使用IP地址。</p>
+<ol start="3">
+<li>登录自己的GitHub，进入之前创建的仓库界面，点击setting，设置Custom domain，输入自己的域名。如下图：<br><img src="/images/hexo-7.png" alt="hexo-7"></li>
+</ol>
+<hr>
+<p>以上我们就基本完成了完整的Hexo+GitHub-Pages搭建个人博客是不是很简单！</p>
+<h2 id="更新主题："><a href="#更新主题：" class="headerlink" title="更新主题："></a>更新主题：</h2><ol>
+<li>官方提供了一些主题，你可<a href="https://hexo.io/themes/" target="_blank" rel="noopener">以戳</a>我查看。这里选取最主流的<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">Next</a>主题吧。因为小众的主题会在你配置时出现一些难以忍受的问题。</li>
+<li><p>安装主题，进入blog文件夹下（根目录），执行以下命令即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Hexo 有两份主要的配置文件（_config.yml）,一份位于站点根目录下，另一份位于主题目录下，为了叙述方便，在以下说明中将前者称为站点配置文件，后者称为主题配置文件。clone完成后，打开站点配置文件，找到 theme 字段，并将其值更改为next。然后验证主题是否启用。</p>
+</li>
+</ol>
+<h2 id="多电脑同步"><a href="#多电脑同步" class="headerlink" title="多电脑同步:"></a>多电脑同步:</h2><p>思考：当重装电脑，或者在别的电脑想要发布，修改文章的时候，怎么使用之前已经搭建好的Hexo环境？</p>
+<p>我的做法：用GitHub的两个分支，一个用来存放Hexo网站源文件，一个用来发布网站（Hexo最后部署的静态文件）。</p>
+<ol>
+<li>GitHub 创建两个分支：一个master分支， 一个hexo分支。<br> master分支：本地编译好的静态文件，即博客显示的静态文件；<br> hexo分支：本地的原始程序文件，即博客的源文件；</li>
+<li>clone 库到本地一个空文件夹，此时文件夹的名字就成了RiversMaJianCheng.github.io</li>
+<li>创建分支hexo，切换到分支hexo，将分支推送到远端，在GitHub修改默认分支为source</li>
+<li>将之前hexo本地生成的博客的文件夹的所有文件，都拷贝到RiversMaJianCheng.github.io文件夹下的hexo分支下（当前分支要是hexo）<strong><em>注</em></strong> <strong>这里要删除主题中的Git版本管理，不然默认无法提交主题文件。</strong></li>
+<li>然后执行git命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m &quot;在hexo分支提交博客源文件&quot;</span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>6.分支维护（电脑要装Git和Node.js）<br>（1）因为GitHub有两个分支，默认为Hexo，clone到本地（hexo 千万不要执行hexo init）<br>（2）直接hexo sever 有可能 ERROR 提示执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure></p>
+<p>如果还有错误可以按照提示执行，提示很清楚的。<br>（3）然后就可以正常hexo server 正常编辑了<br>接着创建新的博客<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;title&quot;</span><br></pre></td></tr></table></figure></p>
+<p>（4）修改文件后执行下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+<p>然后就部署到服务器了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+        
+            <div>
+
+<div style="text-align:center;color: #aaa;font-size:18px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+
+</div>
+
+        
+    </div>
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/hello-world/" rel="next" title="你好，世界！">
+                <i class="fa fa-chevron-left"></i> 你好，世界！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/17/Java-基础语法学习/" rel="prev" title="Java 基础语法学习及程序设计">
+                Java 基础语法学习及程序设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTc0MS8xMjI3Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="RiversMa">
+            
+              <p class="site-author-name" itemprop="name">RiversMa</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/RiversMaJianCheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jianchengmadev@gmail.com" target="_blank" title="邮箱">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>邮箱</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/riversma" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建步骤："><span class="nav-number">1.</span> <span class="nav-text">搭建步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Node-js"><span class="nav-number">1.2.</span> <span class="nav-text">安装Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.3.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub创建个人仓库"><span class="nav-number">1.4.</span> <span class="nav-text">GitHub创建个人仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将博客与GitHub相关联"><span class="nav-number">1.5.</span> <span class="nav-text">将博客与GitHub相关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得个人网站域名并绑定"><span class="nav-number">1.6.</span> <span class="nav-text">获得个人网站域名并绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新主题："><span class="nav-number">2.</span> <span class="nav-text">更新主题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多电脑同步"><span class="nav-number">3.</span> <span class="nav-text">多电脑同步:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RiversMa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
