@@ -5,7 +5,7 @@ tags:
 ---
 ## GitHub建仓库
 去GitHub建自己的仓库，如下图所示：
-![](https://ws1.sinaimg.cn/large/006tKfTcly1fquc2hqs1pj31bg0z8wkm.jpg)
+![](https://tva1.sinaimg.cn/large/006tNbRwgy1g9v5kewwkij314f0u0gr3.jpg)
 
 1. 仓库建好之后，把项目克隆到本地，cd到克隆下来的文件夹
 2. 在此文件夹下建一个工程项目（或者建好之后拖进来）
@@ -15,7 +15,7 @@ tags:
     pod spec create 你开源到pod的文件名
 ```
 以上都建立好之后就是下图的样子：
-![](https://ws3.sinaimg.cn/large/006tKfTcly1fqucjptpszj30re0midhv.jpg)
+![](https://tva1.sinaimg.cn/large/006tNbRwly1g9v5x6xi6pj30re0mi0ul.jpg)
 
 ## 配置.podspec内容
 这个根据自己的情况配置podspec文件简单模板(我的如下)：
@@ -95,14 +95,14 @@ pod trunk push JCDrawSpiderChart.podspec
 pod trunk push JCDrawSpiderChart.podspec --allow-warnings
 ```
 整个验证效果图如下：
-![](https://ws3.sinaimg.cn/large/006tKfTcly1fqudg52p1bj317a0tqn5i.jpg)
+![](https://tva1.sinaimg.cn/large/006tNbRwly1g9v5xxd9q5j317a0tqqan.jpg)
 
 **注：**
 这时候执行命令会出现以下结果：
 ```
 pod search JCDrawSpiderChart
 ```
-![](https://ws2.sinaimg.cn/large/006tKfTcly1fqudqs8jpmj30vk09640m.jpg)
+![](https://tva1.sinaimg.cn/large/006tNbRwly1g9v5yb9o5tj30vk096gnh.jpg)
 
 ## 更新.podspec文件
 由于我们的开源库版本更新，所以我们的 podspec 文件也必须更新，至于更新步骤就是重复上面步骤：
@@ -127,7 +127,7 @@ $ ~/.cocoapods/repos
 ```
 $ pod repo add XXXX http://lalalalala/majiancheng/XXXX.git
 ```
-![](https://ws2.sinaimg.cn/large/006tNc79ly1fspvor722tj31aq0o8jv0.jpg)
+![](https://tva1.sinaimg.cn/large/006tNbRwly1g9v5yo1hs0j31aq0o8n0n.jpg)
 
 这样就将我们自己创建的索引库放到.cocoapods 管理的仓库下。默认情况下是只有一个master仓库，我们常用的AFNetworking等本地的索引就在这个仓库中，现在我们通过gitLab来创建自己的仓库，所以要创建一个自己的索引仓库，该仓库下至存放各组件的索引文件，不存放任何代码！！！
 
@@ -136,7 +136,8 @@ $ pod repo add XXXX http://lalalalala/majiancheng/XXXX.git
 $ pod repo push XXXX  zujianku.podspec
 ```
 然后测试：pod search XXXX
-![](https://ws2.sinaimg.cn/large/006tNc79ly1fspvquk180j30vo0j8tb7.jpg)
+
+![](https://tva1.sinaimg.cn/large/006tNbRwly1g9v5z3z6vwj30vo0j8gnw.jpg)
 
 以上算是基本完成了本地组件化的前期建仓过程，下面的写代码就行了！！！
 
@@ -149,7 +150,8 @@ $ pod repo push XXXX  zujianku.podspec
 使用：
 如下图，Podfile文件需要加入私有仓库索引。
 **注：pod公有仓库必须添加，不然pod公有库都无法使用 source 'https://github.com/CocoaPods/Specs.git' #共有库地址**
-![](https://ws3.sinaimg.cn/large/006tKfTcly1fsqw9cjfzfj31c80mq784.jpg)
+
+![](https://tva1.sinaimg.cn/large/006tNbRwly1g9v5zghyqoj31c80mq77w.jpg)
 
 ## 参考
 [CocoaPods支持导入自己的开源库](https://arthurcao.com/2017/04/25/cocoapods-and-podspec/)
